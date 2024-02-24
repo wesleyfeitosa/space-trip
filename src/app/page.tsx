@@ -1,14 +1,14 @@
 import { serverUrl } from '@/infra/server';
 import { type UpcomingLaunch } from '@/entities/upcoming-launch';
-import { LaunchCard } from '@/components/launch-card';
+import { LaunchCard } from '@/components/molecules/launch-card';
 import styles from './page.module.css';
 
-type LaunchProps = {
+interface LaunchProps {
 	count: number;
 	results: UpcomingLaunch[];
-};
+}
 
-export async function fetchLaunches() {
+async function fetchLaunches() {
 	const response = await fetch(`${serverUrl}/launch/upcoming?limit=10`, {
 		next: {
 			tags: ['list-upcoming-launches'],

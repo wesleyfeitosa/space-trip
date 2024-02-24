@@ -1,12 +1,13 @@
 'use client';
 
 import { type UpcomingLaunch } from '@/entities/upcoming-launch';
+import { Button } from '../atoms/button';
 import styles from './launch-card.module.css';
-import { Button } from './button';
+import { Countdown } from './countdown';
 
-type Props = {
+interface Props {
 	readonly launch: UpcomingLaunch;
-};
+}
 
 export function LaunchCard({ launch }: Props) {
 	return (
@@ -19,7 +20,7 @@ export function LaunchCard({ launch }: Props) {
 			<section className={styles.cardContent}>
 				<h3>{launch.name}</h3>
 				<p>{launch.mission.description}</p>
-				<p>{launch.net}</p>
+				<Countdown net={launch.net} />
 				<Button
 					title="Ver detalhes"
 					onClick={() => {
