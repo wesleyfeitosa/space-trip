@@ -1,6 +1,6 @@
+import { serverUrl } from '@/infra/server';
 import { type UpcomingLaunch } from '@/entities/upcoming-launch';
 import { LaunchCard } from '@/components/launch-card';
-import { serverUrl } from '@/api/server';
 import styles from './page.module.css';
 
 type LaunchProps = {
@@ -9,7 +9,12 @@ type LaunchProps = {
 };
 
 export async function fetchLaunches() {
-	const response = await fetch(`${serverUrl}/launch/upcoming?limit=10`);
+	const response = await fetch(`${serverUrl}/launch/upcoming?limit=10`, {
+		next: {
+			tags: ['list-upcoming-launches'],
+			revalidate: 60 * 60, // Revalidate the data after 1 hour
+		},
+	});
 
 	if (!response) {
 		throw new Error('Failed to fetch launches data.');
