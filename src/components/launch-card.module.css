@@ -5,7 +5,7 @@
   align-items: center;
   margin: 2rem 0;
   background-color: #21262d;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   transition: color 0.15s ease, border-color 0.15s ease;
   height: 300px;
 }
