@@ -4,8 +4,8 @@
 
 - [X] Deve ser possível listar os proxímos lançamentos de foguetes;
 - [] Deve ser possível ver os detalhes de cada lançamento;
-- [] Deve ter uma interface responsiva;
-- [] Deve ter uma interface de boa acessabilidade;
+- [] Deve ter a opção de escolha do idioma entre inglês e português;
+- [] Deve ter a opção de escolha do tema black ou light;
 
 ## RN (Regras de negócio)
 
@@ -13,6 +13,8 @@
 
 ## RNF (Requisitos não funcionais)
 
-- [] Gerenciar a limitação de 15 requisições por hora;
 - [X] Usar cache nas requisições para poupar recursos da api;
+- [] Gerenciar a limitação de 15 requisições por hora;
+- [] Deve ter uma interface responsiva;
+- [] Deve ter uma interface de boa acessabilidade;
 
