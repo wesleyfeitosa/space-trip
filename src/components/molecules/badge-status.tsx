@@ -21,7 +21,7 @@ export function BadgeStatus({ status }: BadgeStatusProps) {
 			case 1:
 				setTitle('GO');
 				setDescription('Lançamento confirmado');
-				setBackgroundColor('green');
+				setBackgroundColor('#4CAF50');
 				setTextColor('white');
 				break;
 			case 2:
@@ -33,7 +33,7 @@ export function BadgeStatus({ status }: BadgeStatusProps) {
 			case 3:
 				setTitle('Sucesso');
 				setDescription('Lançamento realizado com sucesso');
-				setBackgroundColor('green');
+				setBackgroundColor('#4CAF50');
 				setTextColor('white');
 				break;
 			case 4:
