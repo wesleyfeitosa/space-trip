@@ -9,17 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "15.4.5",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^22",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "7.0.2",
     "@typescript-eslint/parser": "7.0.2",
     "eslint": "8.56.0",
+    "eslint-config-next": "15.4.5",
     "eslint-config-prettier": "9.1.0",
     "eslint-config-xo": "0.44.0",
     "eslint-config-xo-typescript": "2.0.0",

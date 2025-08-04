@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { type LaunchStatus } from '@/entities/launch-status';
-import { Tooltip } from '../atoms/tooltip';
+import { Tooltip } from '@/components/atoms/tooltip/tooltip';
 import styles from './badge-status.module.css';
 
 interface BadgeStatusProps {

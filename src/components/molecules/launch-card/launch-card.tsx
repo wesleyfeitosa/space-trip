@@ -1,10 +1,10 @@
 'use client';
 
 import { type UpcomingLaunch } from '@/entities/upcoming-launch';
-import { Countdown } from '../atoms/countdown';
-import { Button } from '../atoms/button';
+import { Countdown } from '@/components/atoms/countdown/countdown';
+import { Button } from '@/components/atoms/button/button';
+import { BadgeStatus } from '../badge-status/badge-status';
 import styles from './launch-card.module.css';
-import { BadgeStatus } from './badge-status';
 
 interface Props {
 	readonly launch: UpcomingLaunch;
@@ -15,7 +15,7 @@ export function LaunchCard({ launch }: Props) {
 		<div className={styles.card}>
 			<img
 				className={styles.launchImage}
-				src={launch.image}
+				src={launch.image?.image_url}
 				alt={launch.name}
 			/>
 			<section className={styles.cardContent}>
