@@ -27,7 +27,7 @@ export function LaunchCard({ launch }: Props) {
 
 	// Add cache busting for development (hydration-safe)
 	const addCacheBuster = (url: string) => {
-		if (process.env.NODE_ENV === 'development' && cacheBuster) {
+		if (cacheBuster) {
 			const separator = url.includes('?') ? '&' : '?';
 			return `${url}${separator}${cacheBuster}`;
 		}
@@ -48,9 +48,7 @@ export function LaunchCard({ launch }: Props) {
 
 	// Set cache buster only on client side to avoid hydration issues
 	useEffect(() => {
-		if (process.env.NODE_ENV === 'development') {
-			setCacheBuster(`t=${Date.now()}`);
-		}
+		setCacheBuster(`t=${Date.now()}`);
 	}, [currentLaunchId]); // Reset cache buster when launch changes
 
 	return (

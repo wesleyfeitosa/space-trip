@@ -20,5 +20,21 @@
         "NODE_ENV": "development"
       }
     },
+    {
+      "name": "Start Next.js (Prod)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "args": [
+        "run",
+        "start"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
   ]
 }
