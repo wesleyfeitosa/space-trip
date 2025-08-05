@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 
+import { Header } from '@/components/organisms/header/header';
 import './globals.css';
-import styles from './layout.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,18 +20,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<div>
-					<header className={styles.header}>
-						<nav>
-							<b>Space Trip</b>
-						</nav>
-						<nav className={styles.centerHeader}>
-							{/* <b>Mais dados</b>
-							<b>Notícias</b> */}
-						</nav>
-						<nav>
-							<b>Github</b>
-						</nav>
-					</header>
+					<Header />
 					{children}
 				</div>
 			</body>
