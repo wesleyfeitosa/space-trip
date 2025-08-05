@@ -14,7 +14,10 @@
 ## RNF (Requisitos não funcionais)
 
 - [X] Usar cache nas requisições para poupar recursos da api;
+- [X] Deve usar as últimas versões do Next e da API consumida;
 - [ ] Gerenciar a limitação de 15 requisições por hora;
 - [ ] Deve ter uma interface responsiva;
 - [ ] Deve ter uma interface de boa acessabilidade;
+- [X] Deve renderizar primeiro uma imagem de menor qualidade para melhorar a performance;
+- [ ] Deve ter um infinite scroll dos dados de lançamentos na página inicial;
 

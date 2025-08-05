@@ -1,5 +1,5 @@
+import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
-import { type UpcomingLaunch } from '@/entities/upcoming-launch';
 import { LaunchCard } from '@/components/molecules/launch-card/launch-card';
 import styles from './page.module.css';
 
