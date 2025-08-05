@@ -1,0 +1,39 @@
+/* Launch Pad Styles */
+.section {
+	margin-bottom: 2rem;
+}
+
+.sectionTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.padCard {
+  background-color: #21262d;
+	border: 1px solid var(--border, #646464);
+	border-radius: 8px;
+	padding: 1.5rem;
+}
+
+.padCard h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.padCard p {
+	color: var(--foreground-muted);
+	margin-bottom: 0.5rem;
+}
+
+.padCard p:last-child {
+	margin-bottom: 0;
+}
+
+.padDescription {
+	line-height: 1.6;
+	margin-top: 1rem;
+}

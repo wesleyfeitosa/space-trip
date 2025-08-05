@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { Countdown } from '@/components/atoms/countdown/countdown';
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export function LaunchCard({ launch }: Props) {
+	const router = useRouter();
 	const [imageLoaded, setImageLoaded] = useState(false);
 	const [imageError, setImageError] = useState(false);
 	const [cacheBuster, setCacheBuster] = useState('');
@@ -101,7 +103,7 @@ export function LaunchCard({ launch }: Props) {
 				<Button
 					title="Ver detalhes"
 					onClick={() => {
-						console.log('Ver detalhes');
+						router.push(`/launch/details/${launch.id}`);
 					}}
 				/>
 			</section>

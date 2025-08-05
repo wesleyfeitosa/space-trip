@@ -1,0 +1,31 @@
+/* Launch Window Styles */
+.section {
+	margin-bottom: 2rem;
+}
+
+.sectionTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.windowCard {
+  background-color: #21262d;
+	border: 1px solid var(--border, #646464);
+	border-radius: 8px;
+	padding: 1.5rem;
+}
+
+.windowCard p {
+	margin-bottom: 0.75rem;
+	color: var(--foreground-muted);
+}
+
+.windowCard p:last-child {
+	margin-bottom: 0;
+}
+
+.windowCard strong {
+	color: var(--foreground);
+}

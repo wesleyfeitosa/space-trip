@@ -1,0 +1,43 @@
+/* Rocket Info Styles */
+.section {
+	margin-bottom: 2rem;
+}
+
+.sectionTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.rocketCard {
+  background-color: #21262d;
+	border: 1px solid var(--border, #646464);
+	border-radius: 8px;
+	padding: 1.5rem;
+}
+
+.rocketCard h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.rocketSpecs {
+	display: grid;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.rocketSpecs p {
+	color: var(--foreground-muted);
+	font-size: 0.875rem;
+	margin: 0;
+}
+
+.rocketDescription {
+	color: var(--foreground-muted);
+	line-height: 1.6;
+	margin: 0;
+}

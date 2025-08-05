@@ -1,0 +1,64 @@
+/* Launch Provider Styles */
+.section {
+	margin-bottom: 2rem;
+}
+
+.sectionTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--foreground);
+}
+
+.providerCard {
+  background-color: #21262d;
+	border: 1px solid var(--border, #646464);
+	border-radius: 8px;
+	padding: 1.5rem;
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+}
+
+.providerLogo {
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	border-radius: 8px;
+	flex-shrink: 0;
+}
+
+.providerInfo {
+	flex: 1;
+}
+
+.providerInfo h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	color: var(--foreground);
+}
+
+.providerStats {
+	color: var(--foreground-muted);
+	font-size: 0.875rem;
+	margin-bottom: 0.25rem;
+}
+
+.providerDescription {
+	color: var(--foreground-muted);
+	line-height: 1.6;
+	margin-top: 0.5rem;
+	margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+	.providerCard {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.providerLogo {
+		align-self: center;
+	}
+}
