@@ -22,7 +22,6 @@
 	gap: 1rem;
 	padding: 1rem;
   background-color: #21262d;
-	border: 1px solid var(--border, #646464);
 	border-radius: 8px;
 }
 
@@ -51,7 +50,6 @@
 
 .videoCard {
   background-color: #21262d;
-	border: 1px solid var(--border, #646464);
 	border-radius: 8px;
 	overflow: hidden;
 	transition: transform 0.2s ease;
@@ -96,7 +94,6 @@
 
 .updateCard {
   background-color: #21262d;
-	border: 1px solid var(--border, #646464);
 	border-radius: 8px;
 	padding: 1rem;
 }
