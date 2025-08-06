@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
+import { Logo } from '../../atoms/logo/logo';
 import styles from './header.module.css';
 
 export function Header() {
@@ -15,7 +16,7 @@ export function Header() {
 					router.push('/');
 				}}
 			>
-				<b>Space Trip</b>
+				<Logo />
 			</nav>
 			<nav className={styles.centerHeader}>
 				{/* <b>Mais dados</b>

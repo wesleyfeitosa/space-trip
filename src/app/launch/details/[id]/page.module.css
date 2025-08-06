@@ -10,6 +10,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   margin-bottom: 3rem;
+  align-items: stretch;
 }
 
 /* Responsive Design */

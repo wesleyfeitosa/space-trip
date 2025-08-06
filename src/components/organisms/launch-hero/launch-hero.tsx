@@ -10,14 +10,6 @@ interface LaunchHeroProps {
 }
 
 export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
-	// Debug logging
-	console.log('LaunchHero Debug:', {
-		hasImage: Boolean(launch.image),
-		thumbnailUrl: launch.image?.thumbnail_url,
-		fullImageUrl: launch.image?.image_url,
-		imageCredit: launch.image?.credit,
-	});
-
 	return (
 		<section className={styles.hero}>
 			{launch.image && (

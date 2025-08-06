@@ -12,9 +12,9 @@ import { LaunchHero } from '@/components/organisms/launch-hero/launch-hero';
 import styles from './page.module.css';
 
 interface Props {
-	params: {
+	params: Promise<{
 		id: string;
-	};
+	}>;
 }
 
 async function fetchLaunchDetails(
@@ -66,7 +66,8 @@ function formatCurrency(amount: number): string {
 }
 
 export default async function LaunchDetailsPage({ params }: Props) {
-	const launch = await fetchLaunchDetails(params.id);
+	const { id } = await params;
+	const launch = await fetchLaunchDetails(id);
 
 	if (!launch) {
 		notFound();
