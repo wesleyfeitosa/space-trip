@@ -8,9 +8,9 @@
   border-image-slice: 1;
 }
 
-.centerHeader {
+.navigationOptions {
   display: flex;
-  align-items: center;
+  gap: 1rem;
 }
 
 .nav {
@@ -29,7 +29,7 @@
     padding: 0.75rem;
   }
 
-  .centerHeader {
+  .navigationOptions {
     gap: 1rem;
   }
 }
@@ -42,10 +42,7 @@
     gap: 0.5rem;
   }
 
-  .centerHeader {
-    order: 2;
-    width: 100%;
-    justify-content: center;
+  .navigationOptions {
     gap: 0.75rem;
   }
 
@@ -61,7 +58,7 @@
     gap: 0.25rem;
   }
 
-  .centerHeader {
+  .navigationOptions {
     gap: 0.5rem;
   }
 

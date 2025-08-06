@@ -20,4 +20,5 @@
 - [X] Deve ter uma interface de boa acessabilidade;
 - [X] Deve renderizar primeiro uma imagem de menor qualidade para melhorar a performance;
 - [ ] Deve ter um infinite scroll dos dados de lançamentos na página inicial;
+- [ ] Deve ter um loading em tela nas ações de carregamento de requisições;
 

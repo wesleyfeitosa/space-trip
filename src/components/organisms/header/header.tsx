@@ -18,13 +18,14 @@ export function Header() {
 			>
 				<Logo />
 			</nav>
-			<nav className={styles.centerHeader}>
-				{/* <b>Mais dados</b>
-				<b>Notícias</b> */}
-			</nav>
-			<nav className={styles.nav}>
-				<b>Github</b>
-			</nav>
+			<div className={styles.navigationOptions}>
+				<nav className={styles.nav}>
+					<b>Notícias</b>
+				</nav>
+				<nav className={styles.nav}>
+					<b>Sobre</b>
+				</nav>
+			</div>
 		</header>
 	);
 }
