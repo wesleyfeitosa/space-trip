@@ -51,3 +51,57 @@
 	align-items: center;
 	justify-content: center;
 }
+
+/* Responsive Design Pattern */
+/* Tablet styles */
+@media (max-width: 768px) {
+	.image {
+		transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.thumbnail {
+		filter: blur(1.5px);
+	}
+
+	.fullImage {
+		transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+	.image {
+		transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.thumbnail {
+		filter: blur(1px);
+	}
+
+	.fullImage {
+		transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.fallback {
+		font-size: 0.9rem;
+	}
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+	.image {
+		transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.thumbnail {
+		filter: blur(0.5px);
+	}
+
+	.fullImage {
+		transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.fallback {
+		font-size: 0.8rem;
+	}
+}

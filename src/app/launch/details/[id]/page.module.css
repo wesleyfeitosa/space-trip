@@ -13,14 +13,42 @@
   align-items: stretch;
 }
 
-/* Responsive Design */
+/* Responsive Design Pattern */
+/* Tablet styles */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 1.5rem 0;
   }
 
   .detailsGrid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
+    margin-bottom: 2.25rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+  .container {
+    padding: 0.75rem 0;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 }

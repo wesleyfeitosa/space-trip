@@ -93,6 +93,7 @@ body {
   background: #0d1117;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 a {
@@ -102,6 +103,43 @@ a {
 
 ul {
   list-style: none;
+}
+
+/* Global Responsive Design Pattern */
+/* Tablet styles */
+@media (max-width: 768px) {
+  body {
+    padding: 0 0.75rem;
+  }
+  
+  html,
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  body {
+    padding: 0 0.5rem;
+  }
+  
+  html,
+  body {
+    font-size: 13px;
+  }
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+  body {
+    padding: 0 0.25rem;
+  }
+  
+  html,
+  body {
+    font-size: 12px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

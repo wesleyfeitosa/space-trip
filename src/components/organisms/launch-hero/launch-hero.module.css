@@ -57,15 +57,115 @@
 	margin: 0;
 }
 
-@media (min-width: 768px) {
+/* Responsive Design Pattern */
+/* Desktop styles (default above) */
+
+/* Tablet styles */
+@media (max-width: 768px) {
+	.hero {
+		gap: 1.5rem;
+		margin-bottom: 2.25rem;
+	}
+
+	.heroImage {
+		height: 300px;
+	}
+
+	.title {
+		font-size: 2rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.statusRow {
+		gap: 0.75rem;
+	}
+
+	.imageCredit {
+		font-size: 0.7rem;
+		padding: 3px 6px;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+	.hero {
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.heroImage {
+		height: 250px;
+		border-radius: 8px;
+	}
+
+	.title {
+		font-size: 1.75rem;
+		margin-bottom: 0.5rem;
+		line-height: 1.2;
+	}
+
+	.statusRow {
+		gap: 0.5rem;
+		flex-direction: column;
+	}
+
+	.lastUpdated {
+		font-size: 0.8rem;
+	}
+
+	.imageCredit {
+		font-size: 0.65rem;
+		padding: 2px 4px;
+		bottom: 4px;
+		right: 4px;
+	}
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+	.hero {
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	.heroImage {
+		height: 200px;
+		border-radius: 6px;
+	}
+
+	.title {
+		font-size: 1.5rem;
+		margin-bottom: 0.375rem;
+		line-height: 1.1;
+	}
+
+	.statusRow {
+		gap: 0.25rem;
+	}
+
+	.lastUpdated {
+		font-size: 0.75rem;
+	}
+
+	.imageCredit {
+		font-size: 0.6rem;
+		padding: 1px 3px;
+		bottom: 2px;
+		right: 2px;
+	}
+}
+
+/* Large screens - keep horizontal layout */
+@media (min-width: 1024px) {
 	.hero {
 		flex-direction: row;
 		align-items: center;
+		gap: 3rem;
 	}
 
 	.heroImage {
 		flex: 1;
-		max-height: 300px;
+		max-height: 350px;
 	}
 
 	.heroContent {

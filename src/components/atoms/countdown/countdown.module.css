@@ -22,3 +22,69 @@
 .timerContainer {
   width: 64px;
 }
+
+/* Responsive Design Pattern */
+/* Tablet styles */
+@media (max-width: 768px) {
+  .countdownContainer {
+    gap: 0.5rem;
+  }
+
+  .timer {
+    font-size: 1.4rem;
+    margin: 0 0.75rem;
+    margin-bottom: 6px;
+  }
+
+  .timerPrefix {
+    font-size: 1.4rem;
+  }
+
+  .timerContainer {
+    width: 56px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .countdownContainer {
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .timer {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    margin-bottom: 4px;
+  }
+
+  .timerPrefix {
+    font-size: 1.2rem;
+  }
+
+  .timerContainer {
+    width: 48px;
+  }
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+  .countdownContainer {
+    gap: 0.15rem;
+  }
+
+  .timer {
+    font-size: 1rem;
+    margin: 0 0.25rem;
+    margin-bottom: 2px;
+  }
+
+  .timerPrefix {
+    font-size: 1rem;
+  }
+
+  .timerContainer {
+    width: 40px;
+  }
+}

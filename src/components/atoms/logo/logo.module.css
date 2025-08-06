@@ -24,3 +24,43 @@
   -webkit-text-fill-color: transparent;
   transform: translateY(-1px);
 }
+
+/* Responsive Design Pattern */
+/* Tablet styles */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.1rem;
+    letter-spacing: -0.015em;
+  }
+
+  .logo:hover {
+    transform: translateY(-0.75px);
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    font-weight: 650;
+  }
+
+  .logo:hover {
+    transform: translateY(-0.5px);
+  }
+}
+
+/* Small mobile devices (370px and below) */
+@media (max-width: 370px) {
+  .logo {
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 0.95;
+  }
+
+  .logo:hover {
+    transform: translateY(-0.25px);
+  }
+}
