@@ -1,3 +1,7 @@
+import {
+	translateTimelineEvent,
+	translateVideoType,
+} from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import styles from './remaining-sections.module.css';
 
@@ -17,15 +21,20 @@ export function RemainingSections({
 				<section className={styles.section}>
 					<h2 className={styles.sectionTitle}>Cronograma da Missão</h2>
 					<div className={styles.timeline}>
-						{launch.timeline.map((event, index) => (
-							<div key={index} className={styles.timelineEvent}>
-								<div className={styles.timelineTime}>{event.relative_time}</div>
-								<div className={styles.timelineContent}>
-									<h4>{event.type.abbrev}</h4>
-									<p>{event.type.description}</p>
+						{launch.timeline.map((event, index) => {
+							const translatedEvent = translateTimelineEvent(event.type.abbrev);
+							return (
+								<div key={index} className={styles.timelineEvent}>
+									<div className={styles.timelineTime}>
+										{event.relative_time}
+									</div>
+									<div className={styles.timelineContent}>
+										<h4>{translatedEvent.abbrev}</h4>
+										<p>{translatedEvent.description}</p>
+									</div>
 								</div>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				</section>
 			)}
@@ -45,7 +54,9 @@ export function RemainingSections({
 									/>
 									<div className={styles.videoInfo}>
 										<h4>{video.title}</h4>
-										<p className={styles.videoType}>{video.type.name}</p>
+										<p className={styles.videoType}>
+											{translateVideoType(video.type.name)}
+										</p>
 									</div>
 								</a>
 							</div>

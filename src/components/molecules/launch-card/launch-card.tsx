@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
+import { translateMissionDescription } from '@/utils/translations';
 import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { ProgressiveImage } from '@/components/atoms/progressive-image/progressive-image';
 import { Countdown } from '@/components/atoms/countdown/countdown';
@@ -27,7 +28,9 @@ export function LaunchCard({ launch }: Props) {
 			/>
 			<section className={styles.cardContent}>
 				<h3>{launch.name}</h3>
-				<p className={styles.description}>{launch.mission?.description}</p>
+				<p className={styles.description}>
+					{translateMissionDescription(launch.mission?.description ?? '')}
+				</p>
 				<section className={styles.statusContainer}>
 					<Countdown net={launch.net} />
 					<BadgeStatus status={launch.status} />

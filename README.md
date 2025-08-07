@@ -4,7 +4,7 @@
 
 - [X] Deve ser possível listar os proxímos lançamentos de foguetes;
 - [X] Deve ser possível ver os detalhes de cada lançamento;
-- [ ] Deve ter a opção de escolha do idioma entre inglês e português;
+- [X] Deve ter a opção de escolha do idioma entre inglês e português;
 - [ ] Deve ter a opção de escolha do tema black ou light;
 
 ## RN (Regras de negócio)

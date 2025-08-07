@@ -1,3 +1,4 @@
+import { translateAgencyDescription } from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { ProgressiveImage } from '@/components/atoms/progressive-image/progressive-image';
 import styles from './launch-provider.module.css';
@@ -38,7 +39,9 @@ export function LaunchProvider({ provider }: LaunchProviderProps) {
 						</p>
 					</div>
 				</div>
-				<p className={styles.providerDescription}>{provider.description}</p>
+				<p className={styles.providerDescription}>
+					{translateAgencyDescription(provider.description)}
+				</p>
 			</div>
 		</section>
 	);

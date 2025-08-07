@@ -1,3 +1,4 @@
+import { translateRocketDescription } from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import styles from './rocket-info.module.css';
 
@@ -39,7 +40,7 @@ export function RocketInfo({
 					)}
 				</div>
 				<p className={styles.rocketDescription}>
-					{rocket.configuration.description}
+					{translateRocketDescription(rocket.configuration.description)}
 				</p>
 			</div>
 		</section>
