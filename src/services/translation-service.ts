@@ -13,6 +13,116 @@ const translationCache = new Map<string, string>();
 const MAX_RETRIES = 2;
 const RETRY_DELAY = 1000; // 1 second
 
+// Proper nouns that should NOT be translated (company names, rockets, locations, etc.)
+const PROPER_NOUNS = new Set([
+	// Companies / Agencies
+	'SpaceX',
+	'Space Exploration Technologies',
+	'Blue Origin',
+	'NASA',
+	'Rocket Lab',
+	'United Launch Alliance',
+	'ULA',
+	'Arianespace',
+	'Roscosmos',
+	'ISRO',
+	'JAXA',
+	'ESA',
+	'CNSA',
+	'Virgin Galactic',
+	'Virgin Orbit',
+	'Relativity Space',
+	'Firefly Aerospace',
+	'Astra',
+	'Amazon',
+	'Project Kuiper',
+	'Kuiper Systems',
+	'Starlink',
+	'OneWeb',
+	// Rockets
+	'Falcon',
+	'Falcon 9',
+	'Falcon Heavy',
+	'Starship',
+	'Dragon',
+	'Crew Dragon',
+	'Cargo Dragon',
+	'Atlas',
+	'Atlas V',
+	'Delta',
+	'Delta IV',
+	'Vulcan',
+	'Centaur',
+	'Electron',
+	'Neutron',
+	'New Glenn',
+	'New Shepard',
+	'Ariane',
+	'Vega',
+	'Soyuz',
+	'Proton',
+	'Long March',
+	'PSLV',
+	'GSLV',
+	'H-IIA',
+	'H-IIB',
+	'H3',
+	'Antares',
+	'Cygnus',
+	'Terran',
+	'Alpha',
+	'LauncherOne',
+	// Launch Sites & Locations
+	'Kennedy Space Center',
+	'Cape Canaveral',
+	'Cape Canaveral Space Force Station',
+	'Vandenberg',
+	'Vandenberg Space Force Base',
+	'Baikonur',
+	'Kourou',
+	'Wallops',
+	'Mahia',
+	'Mahia Peninsula',
+	'Kodiak',
+	'Tanegashima',
+	'Xichang',
+	'Jiuquan',
+	'Wenchang',
+	'Satish Dhawan',
+	'Plesetsk',
+	'Boca Chica',
+	'Hawthorne',
+	'California',
+	'Texas',
+	'Florida',
+	'New Zealand',
+	'SLC-40',
+	'SLC-4E',
+	'LC-39A',
+	'East Coast',
+	'West Coast',
+	'Mars',
+	'Earth',
+	// Engines
+	'Rutherford',
+	'Merlin',
+	'Raptor',
+	'Kestrel',
+	'BE-4',
+	'RS-25',
+	'RL10',
+	'RD-180',
+	'RD-191',
+	// People
+	'Elon Musk',
+	'Jeff Bezos',
+	'Peter Beck',
+	'Tory Bruno',
+	// Other
+	'Space Exploration Technologies Corp.',
+	'Space Exploration Technologies',
+]);
+
 // Fields that should NOT be translated (technical values, IDs, URLs, etc.)
 const EXCLUDE_FIELDS = new Set([
 	'id',
@@ -160,6 +270,78 @@ function delay(ms: number): Promise<void> {
 }
 
 /**
+ * Protects proper nouns in text by replacing them with placeholders
+ * Returns the protected text and a map of placeholders to original values
+ */
+function protectProperNouns(text: string): {
+	protected: string;
+	replacements: Map<string, string>;
+} {
+	let protectedText = text;
+	const replacements = new Map<string, string>();
+	let placeholderIndex = 0;
+
+	// Sort by length (longest first) to avoid partial replacements
+	const sortedNouns = Array.from(PROPER_NOUNS).sort(
+		(a, b) => b.length - a.length,
+	);
+
+	for (const noun of sortedNouns) {
+		// Case-insensitive search for the proper noun with word boundaries
+		const regex = new RegExp(`\\b${escapeRegex(noun)}\\b`, 'gi');
+		
+		// Find all matches first
+		let match;
+		const matches: Array<{ text: string; index: number }> = [];
+		
+		// Reset regex to find all matches
+		const globalRegex = new RegExp(`\\b${escapeRegex(noun)}\\b`, 'gi');
+		while ((match = globalRegex.exec(protectedText)) !== null) {
+			matches.push({ text: match[0], index: match.index });
+		}
+
+		// Replace matches from end to start to preserve indices
+		for (let i = matches.length - 1; i >= 0; i--) {
+			const matched = matches[i];
+			const placeholder = `PROPERNOUM${placeholderIndex}`;
+			replacements.set(placeholder, matched.text);
+			
+			protectedText =
+				protectedText.substring(0, matched.index) +
+				placeholder +
+				protectedText.substring(matched.index + matched.text.length);
+			
+			placeholderIndex++;
+		}
+	}
+
+	return { protected: protectedText, replacements };
+}
+
+/**
+ * Restores proper nouns from placeholders
+ */
+function restoreProperNouns(
+	text: string,
+	replacements: Map<string, string>,
+): string {
+	let restoredText = text;
+
+	for (const [placeholder, original] of replacements.entries()) {
+		restoredText = restoredText.replace(placeholder, original);
+	}
+
+	return restoredText;
+}
+
+/**
+ * Escapes special regex characters
+ */
+function escapeRegex(str: string): string {
+	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
  * Translates a single text string with retry logic
  */
 async function translateString(
@@ -187,8 +369,29 @@ async function translateString(
 	}
 
 	try {
-		const result = await translate(text, { from: FROM_LANG, to: TO_LANG });
-		const translatedText = result.text;
+		// Protect proper nouns before translation
+		const { protected: protectedText, replacements } =
+			protectProperNouns(text);
+
+		// If the entire text is a proper noun, don't translate
+		if (protectedText.trim().startsWith('PROPERNOUM')) {
+			return text;
+		}
+
+		// If after protection there's nothing left to translate, return original
+		if (!protectedText.replace(/PROPERNOUM\d+/g, '').trim()) {
+			return text;
+		}
+
+		// Translate the protected text
+		const result = await translate(protectedText, {
+			from: FROM_LANG,
+			to: TO_LANG,
+		});
+		let translatedText = result.text;
+
+		// Restore proper nouns in the translated text
+		translatedText = restoreProperNouns(translatedText, replacements);
 
 		// Cache the result
 		translationCache.set(text, translatedText);
@@ -289,9 +492,11 @@ export async function translateApiData<T>(data: T): Promise<T> {
 
 /**
  * Clears the translation cache
+ * Useful when proper nouns list is updated or when testing
  */
 export function clearTranslationCache(): void {
 	translationCache.clear();
+	console.log('Translation cache cleared');
 }
 
 /**
