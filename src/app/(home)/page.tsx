@@ -1,6 +1,7 @@
 import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
 import { LaunchCard } from '@/components/molecules/launch-card/launch-card';
+import { translateApiData } from '@/services/translation-service';
 import styles from './page.module.css';
 
 interface LaunchProps {
@@ -33,7 +34,10 @@ async function fetchLaunches(): Promise<UpcomingLaunch[]> {
 			throw new Error('Invalid response format: missing results array');
 		}
 
-		return launchesData.results;
+		// Translate the data to Portuguese
+		const translatedData = await translateApiData(launchesData);
+
+		return translatedData.results;
 	} catch (error) {
 		console.error('Error fetching launches:', error);
 

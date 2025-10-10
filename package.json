@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "google-translate-api-x": "10.7.2",
     "next": "15.4.5",
     "react": "19.1.1",
     "react-dom": "19.1.1"

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
+import { translateApiData } from '@/services/translation-service';
 import { RocketInfo } from '@/components/organisms/rocket-info/rocket-info';
 import { RemainingSections } from '@/components/organisms/remaining-sections/remaining-sections';
 import { MissionDetails } from '@/components/organisms/mission-details/mission-details';
@@ -39,7 +40,12 @@ async function fetchLaunchDetails(
 			throw new Error(`Failed to fetch launch details: ${response.status}`);
 		}
 
-		return (await response.json()) as UpcomingLaunchDetail;
+		const data = (await response.json()) as UpcomingLaunchDetail;
+
+		// Translate the data to Portuguese
+		const translatedData = await translateApiData(data);
+
+		return translatedData;
 	} catch (error) {
 		console.error('Error fetching launch details:', error);
 		return undefined;
