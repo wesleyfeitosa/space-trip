@@ -16,4 +16,3 @@ export function Spinner({ size = 'medium', color = 'primary' }: SpinnerProps) {
 		</div>
 	);
 }
-

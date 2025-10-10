@@ -265,8 +265,12 @@ function shouldExcludeField(key: string): boolean {
 /**
  * Delay helper for retries
  */
-function delay(ms: number): Promise<void> {
-	return new Promise((resolve) => setTimeout(resolve, ms));
+async function delay(ms: number): Promise<void> {
+	return new Promise<void>((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, ms);
+	});
 }
 
 /**
@@ -289,11 +293,11 @@ function protectProperNouns(text: string): {
 	for (const noun of sortedNouns) {
 		// Case-insensitive search for the proper noun with word boundaries
 		const regex = new RegExp(`\\b${escapeRegex(noun)}\\b`, 'gi');
-		
+
 		// Find all matches first
 		let match;
 		const matches: Array<{ text: string; index: number }> = [];
-		
+
 		// Reset regex to find all matches
 		const globalRegex = new RegExp(`\\b${escapeRegex(noun)}\\b`, 'gi');
 		while ((match = globalRegex.exec(protectedText)) !== null) {
@@ -305,12 +309,12 @@ function protectProperNouns(text: string): {
 			const matched = matches[i];
 			const placeholder = `PROPERNOUM${placeholderIndex}`;
 			replacements.set(placeholder, matched.text);
-			
+
 			protectedText =
 				protectedText.substring(0, matched.index) +
 				placeholder +
 				protectedText.substring(matched.index + matched.text.length);
-			
+
 			placeholderIndex++;
 		}
 	}
@@ -344,10 +348,7 @@ function escapeRegex(str: string): string {
 /**
  * Translates a single text string with retry logic
  */
-async function translateString(
-	text: string,
-	retries = 0,
-): Promise<string> {
+async function translateString(text: string, retries = 0): Promise<string> {
 	// Return original text if translation is disabled
 	if (!ENABLE_TRANSLATION) {
 		return text;
@@ -370,8 +371,7 @@ async function translateString(
 
 	try {
 		// Protect proper nouns before translation
-		const { protected: protectedText, replacements } =
-			protectProperNouns(text);
+		const { protected: protectedText, replacements } = protectProperNouns(text);
 
 		// If the entire text is a proper noun, don't translate
 		if (protectedText.trim().startsWith('PROPERNOUM')) {
@@ -416,7 +416,7 @@ async function translateString(
 /**
  * Recursively translates an object's string values
  */
-async function translateObject(obj: any, depth = 0): Promise<any> {
+async function translateObject(obj: unknown, depth = 0): Promise<unknown> {
 	// Prevent infinite recursion
 	if (depth > 10) {
 		return obj;
@@ -428,14 +428,19 @@ async function translateObject(obj: any, depth = 0): Promise<any> {
 
 	// Handle arrays
 	if (Array.isArray(obj)) {
-		return Promise.all(obj.map((item) => translateObject(item, depth + 1)));
+		const translatedArray = await Promise.all(
+			obj.map(async (item: unknown) => translateObject(item, depth + 1)),
+		);
+		return translatedArray;
 	}
 
 	// Handle objects
 	if (typeof obj === 'object') {
-		const translated: any = {};
+		const translated: Record<string, unknown> = {};
+		const entries = Object.entries(obj);
 
-		for (const [key, value] of Object.entries(obj)) {
+		// Translate all entries sequentially to avoid too many parallel requests
+		for (const [key, value] of entries) {
 			// Check if this field should be excluded
 			if (shouldExcludeField(key)) {
 				translated[key] = value;
@@ -444,9 +449,11 @@ async function translateObject(obj: any, depth = 0): Promise<any> {
 
 			// Translate string values
 			if (typeof value === 'string') {
+				// eslint-disable-next-line no-await-in-loop
 				translated[key] = await translateString(value);
 			} else if (typeof value === 'object' && value !== null) {
 				// Recursively translate nested objects/arrays
+				// eslint-disable-next-line no-await-in-loop
 				translated[key] = await translateObject(value, depth + 1);
 			} else {
 				// Keep other types as is (numbers, booleans, etc.)
@@ -480,9 +487,9 @@ export async function translateApiData<T>(data: T): Promise<T> {
 		}
 
 		// Translate the data
-		const translated = await translateObject(data);
+		const translated = (await translateObject(data)) as T;
 
-		return translated as T;
+		return translated;
 	} catch (error) {
 		console.error('Translation error:', error);
 		// Return original data if translation fails

@@ -3,4 +3,3 @@ import { SkeletonDetail } from '@/components/organisms/skeleton-detail/skeleton-
 export default function Loading() {
 	return <SkeletonDetail />;
 }
-

@@ -1,7 +1,7 @@
+import { translateApiData } from '@/services/translation-service';
 import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
 import { LaunchCard } from '@/components/molecules/launch-card/launch-card';
-import { translateApiData } from '@/services/translation-service';
 import styles from './page.module.css';
 
 interface LaunchProps {

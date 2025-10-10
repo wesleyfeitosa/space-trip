@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
+import { translateApiData } from '@/services/translation-service';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
-import { translateApiData } from '@/services/translation-service';
 import { RocketInfo } from '@/components/organisms/rocket-info/rocket-info';
 import { RemainingSections } from '@/components/organisms/remaining-sections/remaining-sections';
 import { MissionDetails } from '@/components/organisms/mission-details/mission-details';
