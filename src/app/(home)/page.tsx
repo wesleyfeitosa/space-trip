@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import type { Metadata } from 'next';
 
 import { getLanguageFromCookies } from '@/utils/language';
 import { translateApiData } from '@/services/translation-service';
@@ -7,6 +8,18 @@ import { serverUrl } from '@/infra/server';
 import { LaunchCard } from '@/components/molecules/launch-card/launch-card';
 
 import styles from './page.module.css';
+
+export const metadata: Metadata = {
+	title: 'Upcoming Space Launches',
+	description:
+		'Browse the latest upcoming space launches from around the world. Get real-time updates on rocket launches from SpaceX, NASA, Blue Origin, and more space agencies.',
+	openGraph: {
+		title: 'Upcoming Space Launches | Space Trip',
+		description:
+			'Browse the latest upcoming space launches from around the world.',
+		url: 'https://space-trip.vercel.app',
+	},
+};
 
 interface LaunchProps {
 	count: number;
@@ -82,18 +95,39 @@ export default async function Home() {
 				: 'No launches found at the moment.',
 	};
 
+	// Structured data for SEO
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Space Trip',
+		description:
+			'Track upcoming space launches and get real-time updates on missions.',
+		url: 'https://space-trip.vercel.app',
+		potentialAction: {
+			'@type': 'SearchAction',
+			target: 'https://space-trip.vercel.app/?search={search_term_string}',
+			'query-input': 'required name=search_term_string',
+		},
+	};
+
 	return (
-		<main className={styles.main}>
-			<h2 className={styles.title}>{labels.title}</h2>
-			{launches.length > 0 ? (
-				<ul>
-					{launches.map((launch) => (
-						<LaunchCard key={launch.id} launch={launch} />
-					))}
-				</ul>
-			) : (
-				<p>{labels.noLaunches}</p>
-			)}
-		</main>
+		<>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+			/>
+			<main className={styles.main}>
+				<h1 className={styles.title}>{labels.title}</h1>
+				{launches.length > 0 ? (
+					<ul>
+						{launches.map((launch) => (
+							<LaunchCard key={launch.id} launch={launch} />
+						))}
+					</ul>
+				) : (
+					<p>{labels.noLaunches}</p>
+				)}
+			</main>
+		</>
 	);
 }

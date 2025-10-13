@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import type { Metadata } from 'next';
 
 import { getLanguageFromCookies } from '@/utils/language';
 import { translateApiData } from '@/services/translation-service';
@@ -7,6 +8,18 @@ import { serverUrl } from '@/infra/server';
 import { UpdateCard } from '@/components/molecules/update-card/update-card';
 
 import styles from './page.module.css';
+
+export const metadata: Metadata = {
+	title: 'Latest Space News & Updates',
+	description:
+		'Stay informed with the latest space news, mission updates, and announcements from the space industry. Real-time updates from space agencies worldwide.',
+	openGraph: {
+		title: 'Latest Space News & Updates | Space Trip',
+		description:
+			'Stay informed with the latest space news and mission updates.',
+		url: 'https://space-trip.vercel.app/news',
+	},
+};
 
 async function fetchUpdates(): Promise<UpdatesResponse | undefined> {
 	try {
