@@ -29,10 +29,10 @@ export function Header() {
 			</nav>
 			<div className={styles.navigationOptions}>
 				<nav className={styles.nav}>
-					<b>{labels.news}</b>
+					<b className={styles.navLink}>{labels.news}</b>
 				</nav>
 				<nav className={styles.nav}>
-					<b>{labels.about}</b>
+					<b className={styles.navLink}>{labels.about}</b>
 				</nav>
 			</div>
 
