@@ -1,111 +1,111 @@
 /* Tooltip container */
 .tooltip {
-  position: relative;
+	position: relative;
 }
 
 /* Tooltip text */
 .tooltipText {
-  background: #fff;
-  width: 160px;
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity 0.4s;
-  visibility: hidden;
+	background: #fff;
+	width: 160px;
+	padding: 8px;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	opacity: 0;
+	transition: opacity 0.4s;
+	visibility: hidden;
 
-  position: absolute;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
-  color: #312e38;
+	position: absolute;
+	bottom: calc(100% + 12px);
+	left: 50%;
+	transform: translateX(-50%);
+	color: #312e38;
 }
 
 .tooltipText::before {
-  content: '';
-  border-style: solid;
-  border-color: #fff transparent;
-  border-width: 8px 8px 0 8px;
-  top: 100%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+	content: '';
+	border-style: solid;
+	border-color: #fff transparent;
+	border-width: 8px 8px 0 8px;
+	top: 100%;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltipText {
-  opacity: 1;
-  visibility: visible;
+	opacity: 1;
+	visibility: visible;
 }
 
 /* Responsive Design Pattern */
 /* Tablet styles */
 @media (max-width: 768px) {
-  .tooltipText {
-    width: 140px;
-    padding: 6px;
-    font-size: 13px;
-    border-radius: 3px;
-    bottom: calc(100% + 10px);
-    transition: opacity 0.3s;
-  }
+	.tooltipText {
+		width: 140px;
+		padding: 6px;
+		font-size: 13px;
+		border-radius: 3px;
+		bottom: calc(100% + 10px);
+		transition: opacity 0.3s;
+	}
 
-  .tooltipText::before {
-    border-width: 6px 6px 0 6px;
-  }
+	.tooltipText::before {
+		border-width: 6px 6px 0 6px;
+	}
 }
 
 /* Mobile styles */
 @media (max-width: 480px) {
-  .tooltipText {
-    width: 120px;
-    padding: 4px;
-    font-size: 12px;
-    border-radius: 2px;
-    bottom: calc(100% + 8px);
-    transition: opacity 0.25s;
-    font-weight: 400;
-  }
+	.tooltipText {
+		width: 120px;
+		padding: 4px;
+		font-size: 12px;
+		border-radius: 2px;
+		bottom: calc(100% + 8px);
+		transition: opacity 0.25s;
+		font-weight: 400;
+	}
 
-  .tooltipText::before {
-    border-width: 5px 5px 0 5px;
-  }
+	.tooltipText::before {
+		border-width: 5px 5px 0 5px;
+	}
 
-  /* On mobile, also show tooltip on tap/focus for better touch interaction */
-  .tooltip:focus-within .tooltipText,
-  .tooltip:active .tooltipText {
-    opacity: 1;
-    visibility: visible;
-  }
+	/* On mobile, also show tooltip on tap/focus for better touch interaction */
+	.tooltip:focus-within .tooltipText,
+	.tooltip:active .tooltipText {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 /* Small mobile devices (370px and below) */
 @media (max-width: 370px) {
-  .tooltipText {
-    width: 100px;
-    padding: 3px;
-    font-size: 11px;
-    border-radius: 2px;
-    bottom: calc(100% + 6px);
-    transition: opacity 0.2s;
-    font-weight: 400;
-    line-height: 1.3;
-  }
+	.tooltipText {
+		width: 100px;
+		padding: 3px;
+		font-size: 11px;
+		border-radius: 2px;
+		bottom: calc(100% + 6px);
+		transition: opacity 0.2s;
+		font-weight: 400;
+		line-height: 1.3;
+	}
 
-  .tooltipText::before {
-    border-width: 4px 4px 0 4px;
-  }
+	.tooltipText::before {
+		border-width: 4px 4px 0 4px;
+	}
 
-  /* Ensure tooltip doesn't overflow screen on very small devices */
-  .tooltip {
-    position: relative;
-  }
+	/* Ensure tooltip doesn't overflow screen on very small devices */
+	.tooltip {
+		position: relative;
+	}
 
-  .tooltipText {
-    max-width: calc(100vw - 20px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+	.tooltipText {
+		max-width: calc(100vw - 20px);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }

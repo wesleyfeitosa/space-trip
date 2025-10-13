@@ -6,23 +6,20 @@
 	},
 	"extends": [
 		"xo",
+		"next/core-web-vitals",
 		"plugin:react/recommended",
-		"plugin:prettier/recommended"
-	],
-	"plugins": [
-		"react",
-		"import",
 		"prettier"
 	],
+	"plugins": ["react", "import"],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"overrides": [
 		{
-			"extends": [
-				"xo-typescript"
-			],
-			"files": [
-				"*.ts",
-				"*.tsx"
-			],
+			"extends": ["xo-typescript", "prettier"],
+			"files": ["*.ts", "*.tsx"],
 			"rules": {
 				"react/react-in-jsx-scope": "off",
 				"new-cap": [
@@ -31,22 +28,13 @@
 						"capIsNew": false
 					}
 				],
-				"object-curly-spacing": [
-					"error",
-					"always"
-				],
-				"@typescript-eslint/object-curly-spacing": "off",
 				"@typescript-eslint/naming-convention": "off",
 				"@typescript-eslint/lines-between-class-members": "off",
 				"@typescript-eslint/consistent-type-definitions": "off",
 				"import/order": [
 					"error",
 					{
-						"groups": [
-							"builtin",
-							"external",
-							"internal"
-						],
+						"groups": ["builtin", "external", "internal"],
 						"newlines-between": "always",
 						"alphabetize": {
 							"order": "desc",

@@ -1,4 +1,8 @@
+'use client';
+
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
+import { useLanguage } from '@/contexts/language-context';
+
 import styles from './launch-window.module.css';
 
 interface LaunchWindowProps {
@@ -7,18 +11,28 @@ interface LaunchWindowProps {
 }
 
 export function LaunchWindow({ launch, formatDate }: LaunchWindowProps) {
+	const { language } = useLanguage();
+
+	const labels = {
+		title: language === 'pt' ? 'Janela de Lançamento' : 'Launch Window',
+		net: language === 'pt' ? 'NET (Não Antes De)' : 'NET (No Earlier Than)',
+		windowStart: language === 'pt' ? 'Início da janela' : 'Window Start',
+		windowEnd: language === 'pt' ? 'Fim da janela' : 'Window End',
+	};
+
 	return (
 		<section className={styles.section}>
-			<h2 className={styles.sectionTitle}>Janela de Lançamento</h2>
+			<h2 className={styles.sectionTitle}>{labels.title}</h2>
 			<div className={styles.windowCard}>
 				<p>
-					<strong>NET (No Earlier Than):</strong> {formatDate(launch.net)}
+					<strong>{labels.net}:</strong> {formatDate(launch.net)}
 				</p>
 				<p>
-					<strong>Início da janela:</strong> {formatDate(launch.window_start)}
+					<strong>{labels.windowStart}:</strong>{' '}
+					{formatDate(launch.window_start)}
 				</p>
 				<p>
-					<strong>Fim da janela:</strong> {formatDate(launch.window_end)}
+					<strong>{labels.windowEnd}:</strong> {formatDate(launch.window_end)}
 				</p>
 			</div>
 		</section>

@@ -1,6 +1,10 @@
+'use client';
+
 import { translateAgencyDescription } from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
+import { useLanguage } from '@/contexts/language-context';
 import { ProgressiveImage } from '@/components/atoms/progressive-image/progressive-image';
+
 import styles from './launch-provider.module.css';
 
 interface LaunchProviderProps {
@@ -8,11 +12,22 @@ interface LaunchProviderProps {
 }
 
 export function LaunchProvider({ provider }: LaunchProviderProps) {
+	const { language } = useLanguage();
+
 	if (!provider) return null;
+
+	const labels = {
+		title:
+			language === 'pt' ? 'Provedor de Lançamento' : 'Launch Service Provider',
+		founded: language === 'pt' ? 'Fundada em' : 'Founded',
+		totalLaunches: language === 'pt' ? 'Lançamentos totais' : 'Total Launches',
+		successful: language === 'pt' ? 'Sucessos' : 'Successful',
+		failed: language === 'pt' ? 'Falhas' : 'Failed',
+	};
 
 	return (
 		<section className={styles.section}>
-			<h2 className={styles.sectionTitle}>Provedor de Lançamento</h2>
+			<h2 className={styles.sectionTitle}>{labels.title}</h2>
 			<div className={styles.providerCard}>
 				<div className={styles.providerHeader}>
 					{provider.logo && (
@@ -28,14 +43,14 @@ export function LaunchProvider({ provider }: LaunchProviderProps) {
 					<div className={styles.providerInfo}>
 						<h3>{provider.name}</h3>
 						<p className={styles.providerStats}>
-							Fundada em: {provider.founding_year}
+							{labels.founded}: {provider.founding_year}
 						</p>
 						<p className={styles.providerStats}>
-							Lançamentos totais: {provider.total_launch_count}
+							{labels.totalLaunches}: {provider.total_launch_count}
 						</p>
 						<p className={styles.providerStats}>
-							Sucessos: {provider.successful_launches} | Falhas:{' '}
-							{provider.failed_launches}
+							{labels.successful}: {provider.successful_launches} |{' '}
+							{labels.failed}: {provider.failed_launches}
 						</p>
 					</div>
 				</div>

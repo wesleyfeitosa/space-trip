@@ -9,6 +9,7 @@ This application now uses automatic translation to convert all API data from Eng
 ### 1. Translation Service
 
 The translation service (`src/services/translation-service.ts`) automatically:
+
 - Translates all string values in the API responses from English to Portuguese
 - Excludes technical fields (IDs, URLs, dates, numbers, etc.) from translation
 - Caches translated strings to improve performance and reduce API calls
@@ -18,6 +19,7 @@ The translation service (`src/services/translation-service.ts`) automatically:
 ### 2. Excluded Fields
 
 The following types of fields are NOT translated to preserve technical accuracy:
+
 - IDs and URLs
 - Dates and timestamps
 - Coordinates and numerical values
@@ -29,6 +31,7 @@ The following types of fields are NOT translated to preserve technical accuracy:
 ### 3. Integration
 
 The translation is automatically applied in:
+
 - Home page (`src/app/(home)/page.tsx`) - Translates the list of upcoming launches
 - Launch details page (`src/app/launch/details/[id]/page.tsx`) - Translates detailed launch information
 
@@ -39,6 +42,7 @@ The translation is automatically applied in:
 You can control translation using environment variables:
 
 **.env.local:**
+
 ```bash
 # Enable translation (default)
 NEXT_PUBLIC_ENABLE_TRANSLATION=true
@@ -52,6 +56,7 @@ NEXT_PUBLIC_ENABLE_TRANSLATION=false
 If you're behind a corporate proxy or experiencing SSL certificate errors, you have two options:
 
 1. **Disable translation temporarily:**
+
    ```bash
    NEXT_PUBLIC_ENABLE_TRANSLATION=false
    ```
@@ -66,6 +71,7 @@ If you're behind a corporate proxy or experiencing SSL certificate errors, you h
 ### Caching
 
 The translation service includes a built-in cache that:
+
 - Stores previously translated strings in memory
 - Prevents redundant API calls
 - Significantly improves performance for repeated content
@@ -111,13 +117,13 @@ const translatedData = await translateApiData(data);
 
 ```typescript
 async function fetchLaunches() {
-  const response = await fetch(`${serverUrl}/launches/upcoming?limit=10`);
-  const launchesData = await response.json();
-  
-  // Translate the data
-  const translatedData = await translateApiData(launchesData);
-  
-  return translatedData.results;
+	const response = await fetch(`${serverUrl}/launches/upcoming?limit=10`);
+	const launchesData = await response.json();
+
+	// Translate the data
+	const translatedData = await translateApiData(launchesData);
+
+	return translatedData.results;
 }
 ```
 
@@ -126,6 +132,7 @@ async function fetchLaunches() {
 ### Old Approach (utils/translations.ts)
 
 The old system used pattern matching and manual translations:
+
 - Required maintaining large translation dictionaries
 - Couldn't handle dynamic content well
 - Needed constant updates for new content
@@ -133,6 +140,7 @@ The old system used pattern matching and manual translations:
 ### New Approach (services/translation-service.ts)
 
 The new system:
+
 - Automatically translates any new content
 - No manual dictionary maintenance required
 - More accurate with context-aware translation
@@ -141,6 +149,7 @@ The new system:
 ### Keeping Both Systems
 
 You can keep the old translation utilities for:
+
 - UI labels and static content
 - Technical terms requiring specific translations
 - Fallback when automatic translation is disabled
@@ -150,6 +159,7 @@ You can keep the old translation utilities for:
 ### Translation Not Working
 
 1. Check if translation is enabled:
+
    ```bash
    echo $NEXT_PUBLIC_ENABLE_TRANSLATION
    ```
@@ -170,6 +180,7 @@ You can keep the old translation utilities for:
 ### Incorrect Translations
 
 For fields that require specific translations:
+
 1. Add the field name to `EXCLUDE_FIELDS` in `translation-service.ts`
 2. Use manual translations from `utils/translations.ts`
 3. Create custom translation rules if needed
@@ -177,6 +188,7 @@ For fields that require specific translations:
 ## Future Improvements
 
 Potential enhancements:
+
 - Support for multiple languages (Spanish, French, etc.)
 - Integration with professional translation APIs (DeepL, Azure Translator)
 - Pre-translation and storage of static content
@@ -201,8 +213,8 @@ Potential enhancements:
 ## Support
 
 For issues or questions:
+
 1. Check the console for error messages
 2. Verify environment configuration
 3. Test with translation disabled
 4. Review the translation service logs
-

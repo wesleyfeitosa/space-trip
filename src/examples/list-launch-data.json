@@ -277,7 +277,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -599,7 +599,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -913,7 +913,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -1365,7 +1365,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -1696,7 +1696,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -2440,7 +2440,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -2884,7 +2884,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -3262,7 +3262,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -3640,7 +3640,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,
@@ -3926,7 +3926,7 @@
 							"name": "Planet"
 						},
 						"diameter": 12742000,
-						"mass": 5.972168e+24,
+						"mass": 5.972168e24,
 						"gravity": 9.80655,
 						"length_of_day": "1 00:00:00",
 						"atmosphere": true,

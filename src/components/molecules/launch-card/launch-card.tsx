@@ -4,6 +4,7 @@ import { translateMissionDescription } from '@/utils/translations';
 import { type UpcomingLaunch } from '@/interfaces/upcoming-launch';
 import { ProgressiveImage } from '@/components/atoms/progressive-image/progressive-image';
 import { Countdown } from '@/components/atoms/countdown/countdown';
+
 import { BadgeStatus } from '../badge-status/badge-status';
 import styles from './launch-card.module.css';
 

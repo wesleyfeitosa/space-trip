@@ -471,12 +471,22 @@ async function translateObject(obj: unknown, depth = 0): Promise<unknown> {
 /**
  * Translates API data from English to Portuguese
  * @param data The JSON data to translate
+ * @param shouldTranslate Whether to translate the data (default: true for backward compatibility)
  * @returns Translated JSON data
  */
-export async function translateApiData<T>(data: T): Promise<T> {
+export async function translateApiData<T>(
+	data: T,
+	shouldTranslate = true,
+): Promise<T> {
 	try {
 		// Check if data is null or undefined
 		if (!data) {
+			return data;
+		}
+
+		// If translation is not requested, return original data
+		if (!shouldTranslate) {
+			console.log('Translation skipped (language is English)');
 			return data;
 		}
 

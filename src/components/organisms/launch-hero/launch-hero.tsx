@@ -1,7 +1,11 @@
+'use client';
+
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
+import { useLanguage } from '@/contexts/language-context';
 import { BadgeStatus } from '@/components/molecules/badge-status/badge-status';
 import { ProgressiveImage } from '@/components/atoms/progressive-image/progressive-image';
 import { Countdown } from '@/components/atoms/countdown/countdown';
+
 import styles from './launch-hero.module.css';
 
 interface LaunchHeroProps {
@@ -10,6 +14,13 @@ interface LaunchHeroProps {
 }
 
 export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
+	const { language } = useLanguage();
+
+	const labels = {
+		credit: language === 'pt' ? 'Crédito' : 'Credit',
+		lastUpdated: language === 'pt' ? 'Última atualização' : 'Last updated',
+	};
+
 	return (
 		<section className={styles.hero}>
 			{launch.image && (
@@ -23,7 +34,9 @@ export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
 						objectFit="cover"
 					/>
 					{launch.image.credit && (
-						<p className={styles.imageCredit}>Crédito: {launch.image.credit}</p>
+						<p className={styles.imageCredit}>
+							{labels.credit}: {launch.image.credit}
+						</p>
 					)}
 				</div>
 			)}
@@ -34,7 +47,7 @@ export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
 					<Countdown net={launch.net} />
 				</div>
 				<p className={styles.lastUpdated}>
-					Última atualização: {formatDate(launch.last_updated)}
+					{labels.lastUpdated}: {formatDate(launch.last_updated)}
 				</p>
 			</div>
 		</section>

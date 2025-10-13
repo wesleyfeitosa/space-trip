@@ -1,34 +1,37 @@
 {
-  "name": "space-trip",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "google-translate-api-x": "10.7.2",
-    "next": "15.4.5",
-    "react": "19.1.1",
-    "react-dom": "19.1.1"
-  },
-  "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "18.3.23",
-    "@types/react-dom": "18.3.7",
-    "@typescript-eslint/eslint-plugin": "7.0.2",
-    "@typescript-eslint/parser": "7.0.2",
-    "eslint": "8.56.0",
-    "eslint-config-next": "15.4.5",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-config-xo": "0.44.0",
-    "eslint-config-xo-typescript": "2.0.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-prettier": "5.1.3",
-    "eslint-plugin-react": "7.33.2",
-    "prettier": "3.2.5",
-    "typescript": "5.3.3"
-  }
+	"name": "space-trip",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"lint:fix": "next lint --fix",
+		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+		"format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\""
+	},
+	"dependencies": {
+		"google-translate-api-x": "10.7.2",
+		"next": "15.4.5",
+		"react": "19.1.1",
+		"react-dom": "19.1.1"
+	},
+	"devDependencies": {
+		"@types/node": "^22",
+		"@types/react": "18.3.23",
+		"@types/react-dom": "18.3.7",
+		"@typescript-eslint/eslint-plugin": "7.0.2",
+		"@typescript-eslint/parser": "7.0.2",
+		"eslint": "8.56.0",
+		"eslint-config-next": "15.4.5",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-config-xo": "0.44.0",
+		"eslint-config-xo-typescript": "2.0.0",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-prettier": "5.1.3",
+		"eslint-plugin-react": "7.33.2",
+		"prettier": "3.2.5",
+		"typescript": "5.3.3"
+	}
 }

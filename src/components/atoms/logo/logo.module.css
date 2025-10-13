@@ -1,66 +1,71 @@
 .logo {
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease;
-  line-height: 1;
-  text-align: center;
+	font-family:
+		'Inter',
+		'SF Pro Display',
+		-apple-system,
+		BlinkMacSystemFont,
+		sans-serif;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #ffffff;
+	letter-spacing: -0.02em;
+	background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: all 0.3s ease;
+	line-height: 1;
+	text-align: center;
 }
 
 .logo div {
-  display: block;
+	display: block;
 }
 
 .logo:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transform: translateY(-1px);
+	background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transform: translateY(-1px);
 }
 
 /* Responsive Design Pattern */
 /* Tablet styles */
 @media (max-width: 768px) {
-  .logo {
-    font-size: 1.1rem;
-    letter-spacing: -0.015em;
-  }
+	.logo {
+		font-size: 1.1rem;
+		letter-spacing: -0.015em;
+	}
 
-  .logo:hover {
-    transform: translateY(-0.75px);
-  }
+	.logo:hover {
+		transform: translateY(-0.75px);
+	}
 }
 
 /* Mobile styles */
 @media (max-width: 480px) {
-  .logo {
-    font-size: 1rem;
-    letter-spacing: -0.01em;
-    font-weight: 650;
-  }
+	.logo {
+		font-size: 1rem;
+		letter-spacing: -0.01em;
+		font-weight: 650;
+	}
 
-  .logo:hover {
-    transform: translateY(-0.5px);
-  }
+	.logo:hover {
+		transform: translateY(-0.5px);
+	}
 }
 
 /* Small mobile devices (370px and below) */
 @media (max-width: 370px) {
-  .logo {
-    font-size: 0.9rem;
-    letter-spacing: 0;
-    font-weight: 600;
-    line-height: 0.95;
-  }
+	.logo {
+		font-size: 0.9rem;
+		letter-spacing: 0;
+		font-weight: 600;
+		line-height: 0.95;
+	}
 
-  .logo:hover {
-    transform: translateY(-0.25px);
-  }
+	.logo:hover {
+		transform: translateY(-0.25px);
+	}
 }

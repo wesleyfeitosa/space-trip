@@ -1,52 +1,52 @@
 .button {
-  background-color: #4CAF50; /* Green */
-  width: 100%;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: large;
-  font-weight: bold;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  border: 2px solid #4CAF50;
+	background-color: #4caf50; /* Green */
+	width: 100%;
+	color: white;
+	padding: 10px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: large;
+	font-weight: bold;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: var(--border-radius);
+	border: 2px solid #4caf50;
 }
 
 .button:hover {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
+	background-color: white;
+	color: black;
+	border: 2px solid #4caf50;
 }
 
 /* Responsive Design Pattern */
 /* Tablet styles */
 @media (max-width: 768px) {
-  .button {
-    padding: 8px 24px;
-    font-size: medium;
-    border-radius: 10px;
-  }
+	.button {
+		padding: 8px 24px;
+		font-size: medium;
+		border-radius: 10px;
+	}
 }
 
 /* Mobile styles */
 @media (max-width: 480px) {
-  .button {
-    padding: 6px 16px;
-    font-size: small;
-    border-radius: 8px;
-    font-weight: 600;
-  }
+	.button {
+		padding: 6px 16px;
+		font-size: small;
+		border-radius: 8px;
+		font-weight: 600;
+	}
 }
 
 /* Small mobile devices (370px and below) */
 @media (max-width: 370px) {
-  .button {
-    padding: 4px 12px;
-    font-size: 0.8rem;
-    border-radius: 6px;
-    font-weight: 500;
-    min-height: 32px;
-  }
+	.button {
+		padding: 4px 12px;
+		font-size: 0.8rem;
+		border-radius: 6px;
+		font-weight: 500;
+		min-height: 32px;
+	}
 }

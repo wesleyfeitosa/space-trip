@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 
+import { getLanguageFromCookies } from '@/utils/language';
 import { translateApiData } from '@/services/translation-service';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { serverUrl } from '@/infra/server';
@@ -10,6 +12,7 @@ import { LaunchWindow } from '@/components/organisms/launch-window/launch-window
 import { LaunchProvider } from '@/components/organisms/launch-provider/launch-provider';
 import { LaunchPad } from '@/components/organisms/launch-pad/launch-pad';
 import { LaunchHero } from '@/components/organisms/launch-hero/launch-hero';
+
 import styles from './page.module.css';
 
 interface Props {
@@ -42,8 +45,17 @@ async function fetchLaunchDetails(
 
 		const data = (await response.json()) as UpcomingLaunchDetail;
 
-		// Translate the data to Portuguese
-		const translatedData = await translateApiData(data);
+		// Get language preference from cookies
+		const cookieStore = await cookies();
+		const cookieString = cookieStore
+			.getAll()
+			.map((c) => `${c.name}=${c.value}`)
+			.join('; ');
+		const language = getLanguageFromCookies(cookieString);
+
+		// Translate the data only if language is Portuguese
+		const shouldTranslate = language === 'pt';
+		const translatedData = await translateApiData(data, shouldTranslate);
 
 		return translatedData;
 	} catch (error) {
@@ -52,8 +64,8 @@ async function fetchLaunchDetails(
 	}
 }
 
-function formatDate(dateString: string): string {
-	return new Date(dateString).toLocaleDateString('pt-BR', {
+function formatDate(dateString: string, locale = 'en-US'): string {
+	return new Date(dateString).toLocaleDateString(locale, {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
@@ -79,23 +91,41 @@ export default async function LaunchDetailsPage({ params }: Props) {
 		notFound();
 	}
 
+	// Get language preference for date formatting
+	const cookieStore = await cookies();
+	const cookieString = cookieStore
+		.getAll()
+		.map((c) => `${c.name}=${c.value}`)
+		.join('; ');
+	const language = getLanguageFromCookies(cookieString);
+	const locale = language === 'pt' ? 'pt-BR' : 'en-US';
+
 	return (
 		<div className={styles.container}>
-			<LaunchHero launch={launch} formatDate={formatDate} />
+			<LaunchHero
+				launch={launch}
+				formatDate={(date) => formatDate(date, locale)}
+			/>
 			<MissionDetails mission={launch.mission} />
 
 			<div className={styles.detailsGrid}>
 				<LaunchProvider provider={launch.launch_service_provider} />
 				<RocketInfo
 					rocket={launch.rocket}
-					formatDate={formatDate}
+					formatDate={(date) => formatDate(date, locale)}
 					formatCurrency={formatCurrency}
 				/>
 			</div>
 
-			<LaunchWindow launch={launch} formatDate={formatDate} />
+			<LaunchWindow
+				launch={launch}
+				formatDate={(date) => formatDate(date, locale)}
+			/>
 			<LaunchPad pad={launch.pad} />
-			<RemainingSections launch={launch} formatDate={formatDate} />
+			<RemainingSections
+				launch={launch}
+				formatDate={(date) => formatDate(date, locale)}
+			/>
 		</div>
 	);
 }

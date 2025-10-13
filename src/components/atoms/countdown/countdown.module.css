@@ -1,90 +1,90 @@
 .countdownContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: row;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: row;
 }
 
 .timer {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: white;
-  margin: 0 1rem;
-  margin-bottom: 8px;
+	font-size: 1.6rem;
+	font-weight: bold;
+	color: white;
+	margin: 0 1rem;
+	margin-bottom: 8px;
 }
 
 .timerPrefix {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: white;
+	font-size: 1.6rem;
+	font-weight: bold;
+	color: white;
 }
 
 .timerContainer {
-  width: 64px;
+	width: 64px;
 }
 
 /* Responsive Design Pattern */
 /* Tablet styles */
 @media (max-width: 768px) {
-  .countdownContainer {
-    gap: 0.5rem;
-  }
+	.countdownContainer {
+		gap: 0.5rem;
+	}
 
-  .timer {
-    font-size: 1.4rem;
-    margin: 0 0.75rem;
-    margin-bottom: 6px;
-  }
+	.timer {
+		font-size: 1.4rem;
+		margin: 0 0.75rem;
+		margin-bottom: 6px;
+	}
 
-  .timerPrefix {
-    font-size: 1.4rem;
-  }
+	.timerPrefix {
+		font-size: 1.4rem;
+	}
 
-  .timerContainer {
-    width: 56px;
-  }
+	.timerContainer {
+		width: 56px;
+	}
 }
 
 /* Mobile styles */
 @media (max-width: 480px) {
-  .countdownContainer {
-    gap: 0.25rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+	.countdownContainer {
+		gap: 0.25rem;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 
-  .timer {
-    font-size: 1.2rem;
-    margin: 0 0.5rem;
-    margin-bottom: 4px;
-  }
+	.timer {
+		font-size: 1.2rem;
+		margin: 0 0.5rem;
+		margin-bottom: 4px;
+	}
 
-  .timerPrefix {
-    font-size: 1.2rem;
-  }
+	.timerPrefix {
+		font-size: 1.2rem;
+	}
 
-  .timerContainer {
-    width: 48px;
-  }
+	.timerContainer {
+		width: 48px;
+	}
 }
 
 /* Small mobile devices (370px and below) */
 @media (max-width: 370px) {
-  .countdownContainer {
-    gap: 0.15rem;
-  }
+	.countdownContainer {
+		gap: 0.15rem;
+	}
 
-  .timer {
-    font-size: 1rem;
-    margin: 0 0.25rem;
-    margin-bottom: 2px;
-  }
+	.timer {
+		font-size: 1rem;
+		margin: 0 0.25rem;
+		margin-bottom: 2px;
+	}
 
-  .timerPrefix {
-    font-size: 1rem;
-  }
+	.timerPrefix {
+		font-size: 1rem;
+	}
 
-  .timerContainer {
-    width: 40px;
-  }
+	.timerContainer {
+		width: 40px;
+	}
 }

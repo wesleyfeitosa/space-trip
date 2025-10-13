@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { useLanguage } from '@/contexts/language-context';
+
 import styles from './countdown.module.css';
 
 interface CountdownProps {
@@ -14,6 +16,14 @@ export function Countdown({ net }: CountdownProps) {
 	const [minutes, setMinutes] = useState('00');
 	const [seconds, setSeconds] = useState('00');
 	const [isBefore, setIsBefore] = useState(false);
+	const { language } = useLanguage();
+
+	const labels = {
+		days: language === 'pt' ? 'Dias' : 'Days',
+		hours: language === 'pt' ? 'Horas' : 'Hours',
+		minutes: language === 'pt' ? 'Mins' : 'Mins',
+		seconds: language === 'pt' ? 'Segs' : 'Secs',
+	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -46,22 +56,22 @@ export function Countdown({ net }: CountdownProps) {
 			<p className={styles.timerPrefix}>T{isBefore ? '-' : '+'}</p>
 			<div className={styles.timerContainer}>
 				<p className={styles.timer}>{days}</p>
-				<p>Dias</p>
+				<p>{labels.days}</p>
 			</div>
 			<p className={styles.timerPrefix}>:</p>
 			<div className={styles.timerContainer}>
 				<p className={styles.timer}>{hours}</p>
-				<p>Horas</p>
+				<p>{labels.hours}</p>
 			</div>
 			<p className={styles.timerPrefix}>:</p>
 			<div className={styles.timerContainer}>
 				<p className={styles.timer}>{minutes}</p>
-				<p>Mins</p>
+				<p>{labels.minutes}</p>
 			</div>
 			<p className={styles.timerPrefix}>:</p>
 			<div className={styles.timerContainer}>
 				<p className={styles.timer}>{seconds}</p>
-				<p>Segs</p>
+				<p>{labels.seconds}</p>
 			</div>{' '}
 		</div>
 	);

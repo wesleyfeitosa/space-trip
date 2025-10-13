@@ -1,5 +1,9 @@
+'use client';
+
 import { translateRocketDescription } from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
+import { useLanguage } from '@/contexts/language-context';
+
 import styles from './rocket-info.module.css';
 
 interface RocketInfoProps {
@@ -13,28 +17,51 @@ export function RocketInfo({
 	formatDate,
 	formatCurrency,
 }: RocketInfoProps) {
+	const { language } = useLanguage();
+
 	if (!rocket) return null;
+
+	const labels = {
+		title: language === 'pt' ? 'Foguete' : 'Rocket',
+		manufacturer: language === 'pt' ? 'Fabricante' : 'Manufacturer',
+		firstFlight: language === 'pt' ? 'Primeiro voo' : 'First Flight',
+		length: language === 'pt' ? 'Comprimento' : 'Length',
+		diameter: language === 'pt' ? 'Diâmetro' : 'Diameter',
+		leoCapacity: language === 'pt' ? 'Capacidade LEO' : 'LEO Capacity',
+		launchCost: language === 'pt' ? 'Custo de lançamento' : 'Launch Cost',
+	};
 
 	return (
 		<section className={styles.section}>
-			<h2 className={styles.sectionTitle}>Foguete</h2>
+			<h2 className={styles.sectionTitle}>{labels.title}</h2>
 			<div className={styles.rocketCard}>
 				<h3>{rocket.configuration.full_name}</h3>
 				<div className={styles.rocketSpecs}>
-					<p>Fabricante: {rocket.configuration.manufacturer.name}</p>
-					<p>Primeiro voo: {formatDate(rocket.configuration.maiden_flight)}</p>
+					<p>
+						{labels.manufacturer}: {rocket.configuration.manufacturer.name}
+					</p>
+					<p>
+						{labels.firstFlight}:{' '}
+						{formatDate(rocket.configuration.maiden_flight)}
+					</p>
 					{rocket.configuration.length && (
-						<p>Comprimento: {rocket.configuration.length}m</p>
+						<p>
+							{labels.length}: {rocket.configuration.length}m
+						</p>
 					)}
 					{rocket.configuration.diameter && (
-						<p>Diâmetro: {rocket.configuration.diameter}m</p>
+						<p>
+							{labels.diameter}: {rocket.configuration.diameter}m
+						</p>
 					)}
 					{rocket.configuration.leo_capacity && (
-						<p>Capacidade LEO: {rocket.configuration.leo_capacity}kg</p>
+						<p>
+							{labels.leoCapacity}: {rocket.configuration.leo_capacity}kg
+						</p>
 					)}
 					{rocket.configuration.launch_cost && (
 						<p>
-							Custo de lançamento:{' '}
+							{labels.launchCost}:{' '}
 							{formatCurrency(rocket.configuration.launch_cost)}
 						</p>
 					)}

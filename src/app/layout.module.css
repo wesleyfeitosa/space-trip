@@ -1,14 +1,14 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right, transparent, #e4e8ec, transparent);
-  border-image-slice: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0;
+	border-bottom: 1px solid transparent;
+	border-image: linear-gradient(to right, transparent, #e4e8ec, transparent);
+	border-image-slice: 1;
 }
 
 .centerHeader {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }

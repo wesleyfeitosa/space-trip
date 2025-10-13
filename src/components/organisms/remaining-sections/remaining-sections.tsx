@@ -1,8 +1,12 @@
+'use client';
+
 import {
 	translateTimelineEvent,
 	translateVideoType,
 } from '@/utils/translations';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
+import { useLanguage } from '@/contexts/language-context';
+
 import styles from './remaining-sections.module.css';
 
 interface RemainingSectionsProps {
@@ -14,12 +18,21 @@ export function RemainingSections({
 	launch,
 	formatDate,
 }: RemainingSectionsProps) {
+	const { language } = useLanguage();
+
+	const labels = {
+		timeline: language === 'pt' ? 'Cronograma da Missão' : 'Mission Timeline',
+		videos: language === 'pt' ? 'Vídeos' : 'Videos',
+		updates: language === 'pt' ? 'Atualizações' : 'Updates',
+		seeMore: language === 'pt' ? 'Ver mais' : 'See more',
+	};
+
 	return (
 		<>
 			{/* Timeline */}
 			{launch.timeline && launch.timeline.length > 0 && (
 				<section className={styles.section}>
-					<h2 className={styles.sectionTitle}>Cronograma da Missão</h2>
+					<h2 className={styles.sectionTitle}>{labels.timeline}</h2>
 					<div className={styles.timeline}>
 						{launch.timeline.map((event, index) => {
 							const translatedEvent = translateTimelineEvent(event.type.abbrev);
@@ -42,7 +55,7 @@ export function RemainingSections({
 			{/* Videos */}
 			{launch.vid_urls && launch.vid_urls.length > 0 && (
 				<section className={styles.section}>
-					<h2 className={styles.sectionTitle}>Vídeos</h2>
+					<h2 className={styles.sectionTitle}>{labels.videos}</h2>
 					<div className={styles.videosGrid}>
 						{launch.vid_urls.map((video, index) => (
 							<div key={index} className={styles.videoCard}>
@@ -68,7 +81,7 @@ export function RemainingSections({
 			{/* Updates */}
 			{launch.updates && launch.updates.length > 0 && (
 				<section className={styles.section}>
-					<h2 className={styles.sectionTitle}>Atualizações</h2>
+					<h2 className={styles.sectionTitle}>{labels.updates}</h2>
 					<div className={styles.updatesList}>
 						{launch.updates.slice(0, 5).map((update) => (
 							<div key={update.id} className={styles.updateCard}>
@@ -88,7 +101,7 @@ export function RemainingSections({
 										rel="noopener noreferrer"
 										className={styles.updateLink}
 									>
-										Ver mais
+										{labels.seeMore}
 									</a>
 								)}
 							</div>
