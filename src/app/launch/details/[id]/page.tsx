@@ -115,8 +115,7 @@ export default async function LaunchDetailsPage({ params }: Props) {
 	}
 
 	// Structured data for launch event
-	const countryCode =
-		(launch.pad?.country?.name) ?? 'Unknown';
+	const countryCode = launch.pad?.country?.name ?? 'Unknown';
 
 	const structuredData = {
 		'@context': 'https://schema.org',

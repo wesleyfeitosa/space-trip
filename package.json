@@ -12,6 +12,7 @@
 		"format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\""
 	},
 	"dependencies": {
+		"firebase": "12.4.0",
 		"google-translate-api-x": "10.7.2",
 		"next": "15.4.5",
 		"react": "19.1.1",

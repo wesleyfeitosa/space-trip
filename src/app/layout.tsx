@@ -1,9 +1,11 @@
+import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 
 import { LanguageProvider } from '@/contexts/language-context';
 import { Header } from '@/components/organisms/header/header';
 import { Footer } from '@/components/organisms/footer/footer';
+import { FirebaseAnalytics } from '@/components/analytics/firebase-analytics';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -96,6 +98,9 @@ export default function RootLayout({
 			</head>
 			<body className={inter.className}>
 				<LanguageProvider>
+					<Suspense fallback={null}>
+						<FirebaseAnalytics />
+					</Suspense>
 					<div>
 						<Header />
 						{children}
