@@ -4,10 +4,13 @@
 }
 
 .sectionTitle {
-	font-size: 1.5rem;
-	font-weight: bold;
-	margin-bottom: 1rem;
-	color: var(--foreground);
+	font-size: 1.75rem;
+	font-weight: 800;
+	margin-bottom: 1.5rem;
+	background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
 }
 
 /* Timeline Styles */
@@ -21,13 +24,22 @@
 	display: flex;
 	gap: 1rem;
 	padding: 1rem;
-	background-color: #21262d;
-	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(99, 102, 241, 0.2);
+	border-radius: 12px;
+	transition: all 0.3s ease;
+}
+
+.timelineEvent:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: #6366f1;
+	transform: translateX(4px);
+	box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
 }
 
 .timelineTime {
 	font-weight: bold;
-	color: var(--primary, #0070f3);
+	color: #6366f1;
 	min-width: 80px;
 }
 
@@ -49,14 +61,18 @@
 }
 
 .videoCard {
-	background-color: #21262d;
-	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(99, 102, 241, 0.2);
+	border-radius: 12px;
 	overflow: hidden;
-	transition: transform 0.2s ease;
+	transition: all 0.3s ease;
 }
 
 .videoCard:hover {
-	transform: translateY(-2px);
+	background: rgba(255, 255, 255, 0.05);
+	border-color: #6366f1;
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
 }
 
 .videoCard a {
@@ -93,9 +109,18 @@
 }
 
 .updateCard {
-	background-color: #21262d;
-	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(99, 102, 241, 0.2);
+	border-radius: 12px;
 	padding: 1rem;
+	transition: all 0.3s ease;
+}
+
+.updateCard:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: #6366f1;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
 }
 
 .updateHeader {
@@ -108,7 +133,7 @@
 
 .updateAuthor {
 	font-weight: bold;
-	color: var(--primary, #0070f3);
+	color: #6366f1;
 }
 
 .updateDate {
@@ -123,12 +148,15 @@
 }
 
 .updateLink {
-	color: var(--primary, #0070f3);
+	color: #6366f1;
 	text-decoration: none;
 	font-size: 0.875rem;
+	font-weight: 600;
+	transition: color 0.3s ease;
 }
 
 .updateLink:hover {
+	color: #8b5cf6;
 	text-decoration: underline;
 }
 
