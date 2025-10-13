@@ -1,0 +1,138 @@
+.card {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(99, 102, 241, 0.2);
+	border-radius: 16px;
+	padding: 1.5rem;
+	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	height: 100%;
+}
+
+.card:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: var(--primary-color);
+	transform: translateY(-4px);
+	box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.cardHeader {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileImage {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.authorInfo {
+	flex: 1;
+	min-width: 0;
+}
+
+.author {
+	font-size: 0.95rem;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 0 0 0.25rem 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.author strong {
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+.date {
+	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.5);
+	display: block;
+}
+
+.cardContent {
+	flex: 1;
+}
+
+.comment {
+	font-size: 1rem;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+	margin: 0;
+}
+
+.cardFooter {
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: var(--primary-color);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.95rem;
+	transition: all 0.3s ease;
+}
+
+.link:hover {
+	color: #8b5cf6;
+	transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.card {
+		padding: 1.25rem;
+	}
+
+	.profileImage {
+		width: 40px;
+		height: 40px;
+	}
+
+	.author {
+		font-size: 0.9rem;
+	}
+
+	.date {
+		font-size: 0.8rem;
+	}
+
+	.comment {
+		font-size: 0.95rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.card {
+		padding: 1rem;
+	}
+
+	.cardHeader {
+		gap: 0.75rem;
+	}
+
+	.profileImage {
+		width: 36px;
+		height: 36px;
+	}
+
+	.author {
+		font-size: 0.85rem;
+	}
+
+	.comment {
+		font-size: 0.9rem;
+	}
+}
