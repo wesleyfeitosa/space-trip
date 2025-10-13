@@ -13,6 +13,7 @@ export function Header() {
 	const { language } = useLanguage();
 
 	const labels = {
+		home: language === 'pt' ? 'Início' : 'Home',
 		news: language === 'pt' ? 'Notícias' : 'News',
 		about: language === 'pt' ? 'Sobre' : 'About',
 	};
@@ -28,10 +29,28 @@ export function Header() {
 				<Logo />
 			</nav>
 			<div className={styles.navigationOptions}>
-				<nav className={styles.nav}>
+				<nav
+					className={styles.nav}
+					onClick={() => {
+						router.push('/');
+					}}
+				>
+					<b className={styles.navLink}>{labels.home}</b>
+				</nav>
+				<nav
+					className={styles.nav}
+					onClick={() => {
+						router.push('/news');
+					}}
+				>
 					<b className={styles.navLink}>{labels.news}</b>
 				</nav>
-				<nav className={styles.nav}>
+				<nav
+					className={styles.nav}
+					onClick={() => {
+						router.push('/about');
+					}}
+				>
 					<b className={styles.navLink}>{labels.about}</b>
 				</nav>
 			</div>

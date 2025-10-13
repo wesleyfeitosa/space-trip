@@ -1,5 +1,6 @@
 'use client';
 
+import { formatDate } from '@/utils/formatters';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { useLanguage } from '@/contexts/language-context';
 import { BadgeStatus } from '@/components/molecules/badge-status/badge-status';
@@ -10,12 +11,12 @@ import styles from './launch-hero.module.css';
 
 interface LaunchHeroProps {
 	launch: UpcomingLaunchDetail;
-	formatDate: (dateString: string) => string;
 }
 
-export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
+export function LaunchHero({ launch }: LaunchHeroProps) {
 	const { language } = useLanguage();
 
+	const locale = language === 'pt' ? 'pt-BR' : 'en-US';
 	const labels = {
 		credit: language === 'pt' ? 'Crédito' : 'Credit',
 		lastUpdated: language === 'pt' ? 'Última atualização' : 'Last updated',
@@ -47,7 +48,7 @@ export function LaunchHero({ launch, formatDate }: LaunchHeroProps) {
 					<Countdown net={launch.net} />
 				</div>
 				<p className={styles.lastUpdated}>
-					{labels.lastUpdated}: {formatDate(launch.last_updated)}
+					{labels.lastUpdated}: {formatDate(launch.last_updated, locale)}
 				</p>
 			</div>
 		</section>

@@ -4,6 +4,7 @@ import {
 	translateTimelineEvent,
 	translateVideoType,
 } from '@/utils/translations';
+import { formatDate } from '@/utils/formatters';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { useLanguage } from '@/contexts/language-context';
 
@@ -11,15 +12,12 @@ import styles from './remaining-sections.module.css';
 
 interface RemainingSectionsProps {
 	launch: UpcomingLaunchDetail;
-	formatDate: (dateString: string) => string;
 }
 
-export function RemainingSections({
-	launch,
-	formatDate,
-}: RemainingSectionsProps) {
+export function RemainingSections({ launch }: RemainingSectionsProps) {
 	const { language } = useLanguage();
 
+	const locale = language === 'pt' ? 'pt-BR' : 'en-US';
 	const labels = {
 		timeline: language === 'pt' ? 'Cronograma da Missão' : 'Mission Timeline',
 		videos: language === 'pt' ? 'Vídeos' : 'Videos',
@@ -60,6 +58,7 @@ export function RemainingSections({
 						{launch.vid_urls.map((video, index) => (
 							<div key={index} className={styles.videoCard}>
 								<a href={video.url} target="_blank" rel="noopener noreferrer">
+									{/* eslint-disable-next-line @next/next/no-img-element */}
 									<img
 										src={video.feature_image}
 										alt={video.title}
@@ -90,7 +89,7 @@ export function RemainingSections({
 										{update.created_by}
 									</span>
 									<span className={styles.updateDate}>
-										{formatDate(update.created_on)}
+										{formatDate(update.created_on, locale)}
 									</span>
 								</div>
 								<p className={styles.updateContent}>{update.comment}</p>

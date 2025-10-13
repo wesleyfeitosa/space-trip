@@ -78,6 +78,7 @@ export function ProgressiveImage({
 		<div className={`${styles.imageContainer} ${className}`}>
 			{/* Thumbnail - shows immediately and fades out when full image loads */}
 			{thumbnailUrl && !shouldShowFallback && (
+				// eslint-disable-next-line @next/next/no-img-element
 				<img
 					className={`${styles.image} ${styles.thumbnail} ${
 						imageLoaded ? styles.fadeOut : ''
@@ -91,6 +92,7 @@ export function ProgressiveImage({
 
 			{/* Full image - loads in background */}
 			{fullImageUrl && !imageError && (
+				// eslint-disable-next-line @next/next/no-img-element
 				<img
 					className={`${styles.image} ${styles.fullImage} ${
 						imageLoaded ? styles.loaded : styles.loading
@@ -106,6 +108,7 @@ export function ProgressiveImage({
 
 			{/* Fallback image - shows when no images available or on error */}
 			{shouldShowFallback && (
+				// eslint-disable-next-line @next/next/no-img-element
 				<img
 					className={`${styles.image} ${styles.fallback}`}
 					src={fallbackImage}

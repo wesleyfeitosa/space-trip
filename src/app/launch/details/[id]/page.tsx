@@ -64,25 +64,6 @@ async function fetchLaunchDetails(
 	}
 }
 
-function formatDate(dateString: string, locale = 'en-US'): string {
-	return new Date(dateString).toLocaleDateString(locale, {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-		timeZoneName: 'short',
-	});
-}
-
-function formatCurrency(amount: number): string {
-	return new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
-		minimumFractionDigits: 0,
-	}).format(amount);
-}
-
 export default async function LaunchDetailsPage({ params }: Props) {
 	const { id } = await params;
 	const launch = await fetchLaunchDetails(id);
@@ -91,41 +72,19 @@ export default async function LaunchDetailsPage({ params }: Props) {
 		notFound();
 	}
 
-	// Get language preference for date formatting
-	const cookieStore = await cookies();
-	const cookieString = cookieStore
-		.getAll()
-		.map((c) => `${c.name}=${c.value}`)
-		.join('; ');
-	const language = getLanguageFromCookies(cookieString);
-	const locale = language === 'pt' ? 'pt-BR' : 'en-US';
-
 	return (
 		<div className={styles.container}>
-			<LaunchHero
-				launch={launch}
-				formatDate={(date) => formatDate(date, locale)}
-			/>
+			<LaunchHero launch={launch} />
 			<MissionDetails mission={launch.mission} />
 
 			<div className={styles.detailsGrid}>
 				<LaunchProvider provider={launch.launch_service_provider} />
-				<RocketInfo
-					rocket={launch.rocket}
-					formatDate={(date) => formatDate(date, locale)}
-					formatCurrency={formatCurrency}
-				/>
+				<RocketInfo rocket={launch.rocket} />
 			</div>
 
-			<LaunchWindow
-				launch={launch}
-				formatDate={(date) => formatDate(date, locale)}
-			/>
+			<LaunchWindow launch={launch} />
 			<LaunchPad pad={launch.pad} />
-			<RemainingSections
-				launch={launch}
-				formatDate={(date) => formatDate(date, locale)}
-			/>
+			<RemainingSections launch={launch} />
 		</div>
 	);
 }

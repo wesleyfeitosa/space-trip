@@ -1,6 +1,7 @@
 'use client';
 
 import { translateRocketDescription } from '@/utils/translations';
+import { formatCurrency, formatDate } from '@/utils/formatters';
 import { type UpcomingLaunchDetail } from '@/interfaces/upcoming-launch';
 import { useLanguage } from '@/contexts/language-context';
 
@@ -8,19 +9,14 @@ import styles from './rocket-info.module.css';
 
 interface RocketInfoProps {
 	rocket: UpcomingLaunchDetail['rocket'];
-	formatDate: (dateString: string) => string;
-	formatCurrency: (amount: number) => string;
 }
 
-export function RocketInfo({
-	rocket,
-	formatDate,
-	formatCurrency,
-}: RocketInfoProps) {
+export function RocketInfo({ rocket }: RocketInfoProps) {
 	const { language } = useLanguage();
 
 	if (!rocket) return null;
 
+	const locale = language === 'pt' ? 'pt-BR' : 'en-US';
 	const labels = {
 		title: language === 'pt' ? 'Foguete' : 'Rocket',
 		manufacturer: language === 'pt' ? 'Fabricante' : 'Manufacturer',
@@ -42,7 +38,7 @@ export function RocketInfo({
 					</p>
 					<p>
 						{labels.firstFlight}:{' '}
-						{formatDate(rocket.configuration.maiden_flight)}
+						{formatDate(rocket.configuration.maiden_flight, locale)}
 					</p>
 					{rocket.configuration.length && (
 						<p>
