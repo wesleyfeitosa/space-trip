@@ -1,0 +1,440 @@
+.container {
+	padding: 2rem 0;
+	min-height: 100vh;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.title {
+	font-size: 3rem;
+	font-weight: 800;
+	margin-bottom: 1rem;
+	background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.subtitle {
+	font-size: 1.25rem;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.grid {
+	display: grid;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+
+.section {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 16px;
+	padding: 2rem;
+	transition: all 0.3s ease;
+}
+
+.section:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.2);
+	transform: translateY(-2px);
+}
+
+.sectionTitle {
+	font-size: 1.75rem;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.sectionIcon {
+	font-size: 1.5rem;
+}
+
+.vehiclesGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 1.5rem;
+}
+
+.vehicleCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.vehicleCard:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vehicleImage {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.vehicleContent {
+	padding: 1.5rem;
+}
+
+.vehicleTitle {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	color: #ffffff;
+}
+
+.vehicleStatus {
+	display: inline-block;
+	padding: 0.25rem 0.75rem;
+	border-radius: 20px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.statusActive {
+	background: rgba(46, 213, 115, 0.2);
+	color: #2ed573;
+	border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.statusInactive {
+	background: rgba(255, 107, 107, 0.2);
+	color: #ff6b6b;
+	border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.vehicleStats {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.75rem;
+	margin-top: 1rem;
+}
+
+.stat {
+	background: rgba(255, 255, 255, 0.03);
+	padding: 0.75rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statLabel {
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.6);
+	margin-bottom: 0.25rem;
+}
+
+.statValue {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #ffffff;
+}
+
+.updatesList {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.updateCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.25rem;
+	transition: all 0.3s ease;
+}
+
+.updateCard:hover {
+	background: rgba(255, 255, 255, 0.07);
+	border-color: rgba(255, 255, 255, 0.25);
+}
+
+.updateHeader {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.75rem;
+}
+
+.updateProfile {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.updateAuthor {
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.updateDate {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.updateComment {
+	color: rgba(255, 255, 255, 0.85);
+	line-height: 1.6;
+	margin-bottom: 0.5rem;
+}
+
+.updateLink {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-weight: 600;
+	transition: opacity 0.3s ease;
+}
+
+.updateLink:hover {
+	opacity: 0.8;
+	text-decoration: underline;
+}
+
+.streamsGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1.5rem;
+}
+
+.streamCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.streamCard:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.streamImage {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.streamContent {
+	padding: 1rem;
+}
+
+.streamTitle {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+}
+
+.streamDescription {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.7);
+	line-height: 1.4;
+}
+
+.closuresList {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.closureCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.25rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+
+.closureInfo {
+	flex: 1;
+}
+
+.closureTitle {
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+}
+
+.closureWindow {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.closureStatus {
+	padding: 0.5rem 1rem;
+	border-radius: 20px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.noticesList {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 1rem;
+}
+
+.noticeCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.25rem;
+	transition: all 0.3s ease;
+}
+
+.noticeCard:hover {
+	background: rgba(255, 255, 255, 0.07);
+	border-color: rgba(255, 255, 255, 0.25);
+}
+
+.noticeType {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+}
+
+.noticeDate {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.launchesList {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 1.5rem;
+}
+
+.launchCard {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.launchCard:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.launchImage {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.launchContent {
+	padding: 1.5rem;
+}
+
+.launchName {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #ffffff;
+	margin-bottom: 0.75rem;
+}
+
+.launchDate {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.7);
+	margin-bottom: 0.5rem;
+}
+
+.emptyState {
+	text-align: center;
+	padding: 3rem 1rem;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.container {
+		padding: 1.5rem 0;
+	}
+
+	.title {
+		font-size: 2.5rem;
+	}
+
+	.subtitle {
+		font-size: 1rem;
+	}
+
+	.grid {
+		gap: 1.5rem;
+	}
+
+	.section {
+		padding: 1.5rem;
+	}
+
+	.sectionTitle {
+		font-size: 1.5rem;
+	}
+
+	.vehiclesGrid,
+	.streamsGrid,
+	.noticesList,
+	.launchesList {
+		grid-template-columns: 1fr;
+	}
+
+	.vehicleStats {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 1rem 0;
+	}
+
+	.title {
+		font-size: 2rem;
+	}
+
+	.header {
+		margin-bottom: 2rem;
+	}
+
+	.section {
+		padding: 1rem;
+	}
+
+	.sectionTitle {
+		font-size: 1.25rem;
+	}
+
+	.closureCard {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+

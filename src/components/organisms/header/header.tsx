@@ -15,6 +15,7 @@ export function Header() {
 	const labels = {
 		home: language === 'pt' ? 'Início' : 'Home',
 		news: language === 'pt' ? 'Notícias' : 'News',
+		dashboard: language === 'pt' ? 'Painel' : 'Dashboard',
 		about: language === 'pt' ? 'Sobre' : 'About',
 	};
 
@@ -44,6 +45,14 @@ export function Header() {
 					}}
 				>
 					<b className={styles.navLink}>{labels.news}</b>
+				</nav>
+				<nav
+					className={styles.nav}
+					onClick={() => {
+						router.push('/dashboard/starship');
+					}}
+				>
+					<b className={styles.navLink}>{labels.dashboard}</b>
 				</nav>
 				<nav
 					className={styles.nav}
