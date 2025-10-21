@@ -7,7 +7,7 @@
 	font-size: 1.75rem;
 	font-weight: 800;
 	margin-bottom: 1.5rem;
-	background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -15,7 +15,7 @@
 
 .padCard {
 	background: rgba(255, 255, 255, 0.03);
-	border: 1px solid rgba(99, 102, 241, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 12px;
 	padding: 1.5rem;
 	transition: all 0.3s ease;
@@ -23,9 +23,9 @@
 
 .padCard:hover {
 	background: rgba(255, 255, 255, 0.05);
-	border-color: #6366f1;
+	border-color: #ffffff;
 	transform: translateY(-2px);
-	box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+	box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
 }
 
 .padCard h3 {

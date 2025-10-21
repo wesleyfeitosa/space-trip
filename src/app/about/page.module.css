@@ -11,18 +11,18 @@
 	margin-bottom: 3rem;
 	background: linear-gradient(
 		135deg,
-		rgba(99, 102, 241, 0.1) 0%,
-		rgba(139, 92, 246, 0.1) 100%
+		rgba(255, 255, 255, 0.05) 0%,
+		rgba(255, 255, 255, 0.05) 100%
 	);
 	border-radius: 20px;
-	border: 1px solid rgba(99, 102, 241, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .title {
 	font-size: 3.5rem;
 	font-weight: 800;
 	margin-bottom: 1rem;
-	background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -45,7 +45,7 @@
 
 .section:hover {
 	background: rgba(255, 255, 255, 0.04);
-	border-color: rgba(99, 102, 241, 0.2);
+	border-color: rgba(255, 255, 255, 0.2);
 	transform: translateY(-2px);
 }
 
@@ -65,7 +65,7 @@
 	left: 0;
 	width: 60px;
 	height: 3px;
-	background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+	background: linear-gradient(90deg, #ffffff 0%, #f0f0f0 100%);
 	border-radius: 2px;
 }
 
@@ -87,15 +87,15 @@
 	padding: 2rem;
 	background: rgba(255, 255, 255, 0.03);
 	border-radius: 12px;
-	border: 1px solid rgba(99, 102, 241, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	transition: all 0.3s ease;
 }
 
 .featureCard:hover {
-	background: rgba(99, 102, 241, 0.1);
+	background: rgba(255, 255, 255, 0.1);
 	border-color: var(--primary-color);
 	transform: translateY(-4px);
-	box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+	box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 .featureTitle {
@@ -120,18 +120,18 @@
 
 .techBadge {
 	padding: 0.6rem 1.2rem;
-	background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
 	color: white;
 	border-radius: 8px;
 	font-weight: 600;
 	font-size: 0.95rem;
-	box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+	box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 	transition: all 0.3s ease;
 }
 
 .techBadge:hover {
 	transform: translateY(-2px);
-	box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+	box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
 
 .link {
@@ -140,7 +140,7 @@
 	gap: 0.5rem;
 	margin-top: 1rem;
 	padding: 0.8rem 1.5rem;
-	background: rgba(99, 102, 241, 0.1);
+	background: rgba(255, 255, 255, 0.1);
 	border: 2px solid var(--primary-color);
 	border-radius: 10px;
 	color: var(--primary-color);
@@ -154,7 +154,7 @@
 	background: var(--primary-color);
 	color: white;
 	transform: translateX(5px);
-	box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+	box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive Design */
