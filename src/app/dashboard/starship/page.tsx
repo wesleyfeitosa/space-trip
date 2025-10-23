@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { cookies } from 'next/headers';
 import { type Metadata } from 'next';
 
+import { getLanguageFromCookies } from '@/utils/language';
 import type {
 	StarshipDashboard,
 	Vehicle,
@@ -60,7 +62,13 @@ function formatDate(dateString: string): string {
 	}).format(date);
 }
 
-function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+function VehicleCard({
+	vehicle,
+	labels,
+}: {
+	vehicle: Vehicle;
+	labels: { flights: string; landings: string };
+}) {
 	return (
 		<div className={styles.vehicleCard}>
 			{vehicle.image?.image_url && (
@@ -90,11 +98,11 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 				)}
 				<div className={styles.vehicleStats}>
 					<div className={styles.stat}>
-						<div className={styles.statLabel}>Flights</div>
+						<div className={styles.statLabel}>{labels.flights}</div>
 						<div className={styles.statValue}>{vehicle.flights}</div>
 					</div>
 					<div className={styles.stat}>
-						<div className={styles.statLabel}>Landings</div>
+						<div className={styles.statLabel}>{labels.landings}</div>
 						<div className={styles.statValue}>
 							{vehicle.successful_landings}/{vehicle.attempted_landings}
 						</div>
@@ -105,7 +113,13 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 	);
 }
 
-function OrbiterCard({ orbiter }: { orbiter: Orbiter }) {
+function OrbiterCard({
+	orbiter,
+	labels,
+}: {
+	orbiter: Orbiter;
+	labels: { flights: string; timeInSpace: string; inSpace: string };
+}) {
 	return (
 		<div className={styles.vehicleCard}>
 			{orbiter.image?.image_url && (
@@ -124,7 +138,7 @@ function OrbiterCard({ orbiter }: { orbiter: Orbiter }) {
 						orbiter.in_space ? styles.statusActive : styles.statusInactive
 					}`}
 				>
-					{orbiter.in_space ? 'In Space' : orbiter.status.name}
+					{orbiter.in_space ? labels.inSpace : orbiter.status.name}
 				</span>
 				{orbiter.description && (
 					<p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem' }}>
@@ -133,12 +147,12 @@ function OrbiterCard({ orbiter }: { orbiter: Orbiter }) {
 				)}
 				<div className={styles.vehicleStats}>
 					<div className={styles.stat}>
-						<div className={styles.statLabel}>Flights</div>
+						<div className={styles.statLabel}>{labels.flights}</div>
 						<div className={styles.statValue}>{orbiter.flights_count}</div>
 					</div>
 					{orbiter.time_in_space && (
 						<div className={styles.stat}>
-							<div className={styles.statLabel}>Time in Space</div>
+							<div className={styles.statLabel}>{labels.timeInSpace}</div>
 							<div className={styles.statValue}>{orbiter.time_in_space}</div>
 						</div>
 					)}
@@ -148,7 +162,13 @@ function OrbiterCard({ orbiter }: { orbiter: Orbiter }) {
 	);
 }
 
-function UpdateCard({ update }: { update: DashboardUpdate }) {
+function UpdateCard({
+	update,
+	learnMoreLabel,
+}: {
+	update: DashboardUpdate;
+	learnMoreLabel: string;
+}) {
 	return (
 		<div className={styles.updateCard}>
 			<div className={styles.updateHeader}>
@@ -174,7 +194,7 @@ function UpdateCard({ update }: { update: DashboardUpdate }) {
 					rel="noopener noreferrer"
 					className={styles.updateLink}
 				>
-					Learn more →
+					{learnMoreLabel} →
 				</a>
 			)}
 		</div>
@@ -273,22 +293,65 @@ function LaunchCard({ launch }: { launch: UpcomingLaunch }) {
 	);
 }
 
+function getLabels(language: string) {
+	return {
+		title: language === 'pt' ? '🚀 Painel Starship' : '🚀 Starship Dashboard',
+		subtitle:
+			language === 'pt'
+				? 'Atualizações e informações em tempo real sobre o programa Starship da SpaceX'
+				: 'Real-time updates and information about SpaceX\'s Starship program',
+		errorTitle:
+			language === 'pt'
+				? 'Não foi possível carregar os dados do painel no momento.'
+				: 'Unable to load dashboard data at this time.',
+		errorSubtitle:
+			language === 'pt'
+				? 'Por favor, tente novamente mais tarde ou verifique sua conexão com a internet.'
+				: 'Please try again later or check your internet connection.',
+		recentUpdates:
+			language === 'pt' ? 'Atualizações Recentes' : 'Recent Updates',
+		liveStreams: language === 'pt' ? 'Transmissões ao Vivo' : 'Live Streams',
+		roadClosures: language === 'pt' ? 'Fechamentos de Estradas' : 'Road Closures',
+		notices: language === 'pt' ? 'Avisos' : 'Notices',
+		superHeavyBoosters:
+			language === 'pt' ? 'Propulsores Super Heavy' : 'Super Heavy Boosters',
+		starshipVehicles:
+			language === 'pt' ? 'Veículos Starship' : 'Starship Vehicles',
+		upcomingLaunches:
+			language === 'pt' ? 'Próximos Lançamentos' : 'Upcoming Launches',
+		flights: language === 'pt' ? 'Voos' : 'Flights',
+		landings: language === 'pt' ? 'Pousos' : 'Landings',
+		timeInSpace: language === 'pt' ? 'Tempo no Espaço' : 'Time in Space',
+		inSpace: language === 'pt' ? 'No Espaço' : 'In Space',
+		learnMore: language === 'pt' ? 'Saiba mais' : 'Learn more',
+	};
+}
+
+async function getLanguage() {
+	const cookieStore = await cookies();
+	const cookieString = cookieStore
+		.getAll()
+		.map((c) => `${c.name}=${c.value}`)
+		.join('; ');
+	return getLanguageFromCookies(cookieString);
+}
+
 export default async function StarshipDashboardPage() {
 	const dashboard = await getDashboardData();
+	const language = await getLanguage();
+	const labels = getLabels(language);
 
 	if (!dashboard) {
 		return (
 			<main className={styles.container}>
 				<div className={styles.header}>
-					<h1 className={styles.title}>🚀 Starship Dashboard</h1>
-					<p className={styles.subtitle}>
-						Real-time updates and information about SpaceX&apos;s Starship program
-					</p>
+					<h1 className={styles.title}>{labels.title}</h1>
+					<p className={styles.subtitle}>{labels.subtitle}</p>
 				</div>
 				<div className={styles.emptyState}>
-					<p>Unable to load dashboard data at this time.</p>
+					<p>{labels.errorTitle}</p>
 					<p style={{ marginTop: '1rem', fontSize: '0.875rem' }}>
-						Please try again later or check your internet connection.
+						{labels.errorSubtitle}
 					</p>
 				</div>
 			</main>
@@ -298,10 +361,8 @@ export default async function StarshipDashboardPage() {
 	return (
 		<main className={styles.container}>
 			<div className={styles.header}>
-				<h1 className={styles.title}>🚀 Starship Dashboard</h1>
-				<p className={styles.subtitle}>
-					Real-time updates and information about SpaceX&apos;s Starship program
-				</p>
+				<h1 className={styles.title}>{labels.title}</h1>
+				<p className={styles.subtitle}>{labels.subtitle}</p>
 			</div>
 
 			<div className={styles.grid}>
@@ -310,11 +371,15 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>📢</span>
-							Recent Updates
+							{labels.recentUpdates}
 						</h2>
 						<div className={styles.updatesList}>
 							{dashboard.updates.slice(0, 5).map((update) => (
-								<UpdateCard key={update.id} update={update} />
+								<UpdateCard
+									key={update.id}
+									update={update}
+									learnMoreLabel={labels.learnMore}
+								/>
 							))}
 						</div>
 					</section>
@@ -325,7 +390,7 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>📹</span>
-							Live Streams
+							{labels.liveStreams}
 						</h2>
 						<div className={styles.streamsGrid}>
 							{dashboard.live_streams.map((stream, index) => (
@@ -340,7 +405,7 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>🚧</span>
-							Road Closures
+							{labels.roadClosures}
 						</h2>
 						<div className={styles.closuresList}>
 							{dashboard.road_closures.map((closure) => (
@@ -355,7 +420,7 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>📋</span>
-							Notices
+							{labels.notices}
 						</h2>
 						<div className={styles.noticesList}>
 							{dashboard.notices.slice(0, 6).map((notice) => (
@@ -370,11 +435,18 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>🚀</span>
-							Super Heavy Boosters
+							{labels.superHeavyBoosters}
 						</h2>
 						<div className={styles.vehiclesGrid}>
 							{dashboard.vehicles.map((vehicle) => (
-								<VehicleCard key={vehicle.id} vehicle={vehicle} />
+								<VehicleCard
+									key={vehicle.id}
+									vehicle={vehicle}
+									labels={{
+										flights: labels.flights,
+										landings: labels.landings,
+									}}
+								/>
 							))}
 						</div>
 					</section>
@@ -385,11 +457,19 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>🛸</span>
-							Starship Vehicles
+							{labels.starshipVehicles}
 						</h2>
 						<div className={styles.vehiclesGrid}>
 							{dashboard.orbiters.map((orbiter) => (
-								<OrbiterCard key={orbiter.id} orbiter={orbiter} />
+								<OrbiterCard
+									key={orbiter.id}
+									orbiter={orbiter}
+									labels={{
+										flights: labels.flights,
+										timeInSpace: labels.timeInSpace,
+										inSpace: labels.inSpace,
+									}}
+								/>
 							))}
 						</div>
 					</section>
@@ -400,7 +480,7 @@ export default async function StarshipDashboardPage() {
 					<section className={styles.section}>
 						<h2 className={styles.sectionTitle}>
 							<span className={styles.sectionIcon}>🗓️</span>
-							Upcoming Launches
+							{labels.upcomingLaunches}
 						</h2>
 						<div className={styles.launchesList}>
 							{dashboard.upcoming.launches.slice(0, 6).map((launch) => (
