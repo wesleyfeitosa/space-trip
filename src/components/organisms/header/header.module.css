@@ -1,11 +1,15 @@
 .header {
+	position: relative;
+	border-bottom: 1px solid transparent;
+	border-image: linear-gradient(to right, transparent, #e4e8ec, transparent);
+	border-image-slice: 1;
+}
+
+.headerContent {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem 0;
-	border-bottom: 1px solid transparent;
-	border-image: linear-gradient(to right, transparent, #e4e8ec, transparent);
-	border-image-slice: 1;
 }
 
 .navigationOptions {
@@ -36,12 +40,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: all 0.2s ease;
 }
 
 .nav:hover {
 	opacity: 0.8;
-	padding-bottom: 1px;
-	transition: all 0.2s ease;
 }
 
 .navLink {
@@ -50,12 +53,133 @@
 	color: #ffffff;
 }
 
+.rightSection {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: none;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 1001;
+	transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+	opacity: 0.8;
+}
+
+.hamburgerLine {
+	width: 100%;
+	height: 3px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+	transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+	transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Navigation */
+.mobileNav {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 280px;
+	background: rgba(13, 17, 23, 0.98);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	margin-top: 0.5rem;
+	margin-right: 1rem;
+	overflow: hidden;
+	z-index: 1000;
+	transform: translateY(-10px);
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s ease;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.mobileNavOpen {
+	transform: translateY(0);
+	opacity: 1;
+	pointer-events: all;
+}
+
+.mobileNavItem {
+	padding: 1.25rem 1.5rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobileNavItem:last-child {
+	border-bottom: none;
+}
+
+.mobileNavItem:hover {
+	background: rgba(255, 255, 255, 0.08);
+	padding-left: 2rem;
+}
+
+.mobileNavItem:active {
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.mobileNavLink {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+/* Overlay */
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 /* Responsive Design Pattern */
 /* Tablet styles */
 @media (max-width: 1024px) {
-	.header {
+	.headerContent {
 		padding: 1rem;
-		gap: 1rem;
 	}
 
 	.navigationOptions {
@@ -65,66 +189,88 @@
 	.navLink {
 		font-size: 1.1rem;
 	}
+
+	.logo {
+		padding-left: 0;
+	}
 }
 
-@media (max-width: 768px) {
-	.header {
-		padding: 0.75rem 1rem;
-		gap: 1rem;
+/* Show hamburger menu on mobile */
+@media (max-width: 900px) {
+	.hamburger {
+		display: flex;
 	}
 
 	.navigationOptions {
-		gap: 1rem;
+		display: none;
 	}
 
-	.navLink {
-		font-size: 1rem;
+	.mobileNav {
+		display: flex;
+	}
+
+	.overlay {
+		display: block;
+	}
+
+	.headerContent {
+		padding: 0.75rem 1rem;
 	}
 
 	.logo {
-		width: 140px;
-		padding-left: 0;
+		width: 150px;
 	}
 }
 
 /* Mobile styles */
 @media (max-width: 480px) {
-	.header {
+	.headerContent {
 		padding: 0.75rem;
-		gap: 0.75rem;
-		flex-wrap: wrap;
-		justify-content: center;
 	}
 
 	.logo {
-		width: 120px;
-		order: 1;
+		width: 130px;
 	}
 
-	.navigationOptions {
-		gap: 1rem;
-		order: 3;
-		width: 100%;
-		justify-content: center;
-		margin-top: 0.5rem;
+	.mobileNav {
+		width: calc(100% - 2rem);
+		margin-right: 1rem;
+		margin-left: 1rem;
 	}
 
-	.navLink {
-		font-size: 0.95rem;
+	.mobileNavItem {
+		padding: 1rem 1.25rem;
+	}
+
+	.mobileNavLink {
+		font-size: 1rem;
 	}
 }
 
-/* Small mobile devices (370px and below) */
+/* Small mobile devices */
 @media (max-width: 370px) {
-	.header {
+	.headerContent {
 		padding: 0.5rem;
 	}
 
-	.navigationOptions {
-		gap: 0.75rem;
+	.logo {
+		width: 110px;
 	}
 
-	.navLink {
-		font-size: 0.875rem;
+	.hamburger {
+		width: 26px;
+		height: 26px;
+	}
+
+	.hamburgerLine {
+		height: 2.5px;
+	}
+
+	.mobileNavItem {
+		padding: 0.875rem 1rem;
+	}
+
+	.mobileNavLink {
+		font-size: 0.95rem;
 	}
 }
